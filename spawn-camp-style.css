@@ -1890,6 +1890,14 @@ nav a:hover {
         padding: 50px 20px 70px;
     }
 
+    .sc-button {
+        min-height: 44px;
+        padding: 12px 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 
     /* --------------------------------------
        HEADER
@@ -2052,21 +2060,22 @@ nav a:hover {
     -------------------------------------- */
 
     .sc-page-header {
-        margin-top: 30px;
-
-        padding: 28px 25px 26px;
+        width: calc(100% - 30px);
+        margin-top: 20px;
+        padding: 25px 20px 22px;
+        border-radius: 10px;
     }
 
     .sc-page-header h1 {
-        font-size: 34px;
+        font-size: 30px;
 
-        letter-spacing: 3.5px;
+        letter-spacing: 3px;
     }
 
     .sc-page-header p {
-        font-size: 13px;
+        font-size: 12px;
 
-        letter-spacing: 2.5px;
+        letter-spacing: 2px;
     }
 
     .sc-page-header .section-line {
@@ -2240,6 +2249,87 @@ nav a:hover {
     .team-stats-table {
         min-width: 760px;
     }
+
+    /*---------------------------------------
+        Hero Image
+    ---------------------------------------*/
+    .sc-hero {
+        width: calc(100% - 30px);
+        height: 420px;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+
+    .sc-hero-content {
+        left: 25px;
+        right: 25px;
+        max-width: none;
+    }
+
+    .sc-hero h1 {
+        font-size: clamp(38px, 11vw, 56px);
+        letter-spacing: 3px;
+    }
+
+    .sc-hero p {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+    /*---------------------------------------
+        Intro Section
+    ---------------------------------------*/
+    .intro-section {
+        width: calc(100% - 40px);
+        padding: 60px 0;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .intro-image img {
+        height: 300px;
+    }
+
+    .intro-content h2 {
+        font-size: 34px;
+    }
+
+    /*---------------------------------------
+        Services Section
+    ---------------------------------------*/
+    .services-section {
+        padding: 40px 15px;
+    }
+
+    .services-inner {
+        padding: 30px 20px;
+        border-radius: 10px;
+    }
+
+    .services-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .services-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .service-tab {
+        flex: 0 0 auto;
+        width: auto;
+        white-space: nowrap;
+        padding: 12px 16px;
+    }
+
 
 }
 
