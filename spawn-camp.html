@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="spawn-camp-style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="robots" content="noindex, nofollow">
+        
+        <title>Spawn Camp</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="wackyboyzlogo-orange.png" alt="Home">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="spawn-camp.html">Spawn Camp</a>
+                <a href="about">About</a>
+            </nav>
+
+        </div>
+        
+    </header>
+
+    <main>
+
+        <section class="sc-hero">
+
+            <img src="spawn-camp-images/sc-nv-closeup.png" alt="Spawn Camp Cool Dude">
+
+            <div class="sc-hero-content">
+
+                <h1>
+                    SPAWN CAMP 2026
+                </h1>
+
+                <p>
+                    SPAWN CAMP is back again! Grab three of your best shooters and get ready for the best night of gaming you've ever had!
+                </p>
+                <p> SIGN UP BY 9/26</p>
+
+                <span class="sc-section-line"></span>
+                <a href="spawn-camp-signup.html" class="sc-button">SIGN UP TODAY</a>
+
+            </div>
+
+        </section>
+
+        <section class="intro-section">
+
+            <div class="intro-image">
+                <img src="spawn-camp-images/sc-window-closeup.png" alt="Spawn Camp">
+            </div>
+
+            <div class="intro-content">
+
+                <h2>
+                    Get your squad together
+                    and lock in
+                </h2>
+
+                <p>
+                    Sign ups for Spawn Camp are open!
+                    Register yourself and full team by clicking the button below.
+                </p>
+
+                <p class="sc-orange">
+                    SIGN UP BY SEP 26 2026
+                </p>
+
+                <a href="spawn-camp-signup.html" class="sc-button">SIGN UP</a>
+
+            </div>
+
+        </section>
+
+        <section class="services-section">
+
+            <div class="services-inner">
+
+                <div class="services-heading">
+                    <div class="services-title">
+                        <span class="section-line"></span>
+
+                        <h2>
+                            SPAWN CAMP
+                        </h2>
+
+                        <p>
+                            DIVE INTO ALL THINGS SPAWN CAMP
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+                <div class="services-layout">
+
+                    <div class="service-list">
+
+                        <button 
+                            class="service-tab active" 
+                            data-service="learn-more"
+                            >
+                            Learn More
+                        </button>
+
+                         <button   
+                            class="service-tab"
+                            data-service="event-details"
+                            >
+                            Event Details
+                        </button>
+
+                        <button 
+                            class="service-tab"
+                            data-service="bracket"
+                            >
+                            View Bracket
+                        </button>
+
+                        <button 
+                            class="service-tab"
+                            data-service="stats"
+                            >
+                            Live Stats
+                        </button>
+
+                    </div>
+
+                    <div class="service-card">
+
+                        <img 
+                            id="service-image"
+                            src="spawn-camp-images/sc-nv-angle-jeep-crop.png"
+                            alt="Spawn Camp">
+                        
+                        
+                        <div class="service-card-content">
+
+                                <h3 id="service-title">
+                                    What is Spawn Camp?
+                                </h3>
+
+                        <p id="service-description">
+                            Spawn Camp is a private local 4v4 Xbox 360 LAN event centered around the nastalgia of playing classic video game titles in person with a competitive twist.
+                        </p>
+
+                        <div id="service-meta" class="service-meta">
+
+                            <span>4V4</span>
+                            <span>XBOX 360</span>
+                            <span>LOCAL LAN</span>
+                            <span>SIGN UP BY 9/26</span>
+                        </div>
+
+                        <a
+                            href="spawn-camp-signup.html" 
+                            id="service-button"
+                            class="sc-button">SIGN UP</a>
+
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+
+<footer class="sc-footer">
+    <p>&copy; 2026 Wacky Boyz</p>
+</footer>
+
+<script>
+
+// ==========================================
+// SPAWN CAMP SERVICE TABS
+// ==========================================
+
+const serviceTabs =
+    document.querySelectorAll(".service-tab");
+
+const serviceImage =
+    document.getElementById("service-image");
+
+const serviceTitle =
+    document.getElementById("service-title");
+
+const serviceDescription =
+    document.getElementById("service-description");
+
+const serviceMeta =
+    document.getElementById("service-meta");
+
+const serviceButton =
+    document.getElementById("service-button");
+
+
+// ==========================================
+// SERVICE CONTENT
+// ==========================================
+
+const serviceContent = {
+
+    "learn-more": {
+
+    image:
+        "spawn-camp-images/sc-nv-angle-jeep-crop.png",
+
+    alt:
+        "Spawn Camp",
+
+    title:
+        "What is Spawn Camp?",
+
+    description:
+        "Spawn Camp is a 4v4 Xbox 360 LAN tournament built around getting the Wacky Boyz together for a night of competition, nostalgia, and questionable gaming decisions.",
+
+    meta: [
+            "4V4",
+            "XBOX 360",
+            "LAN EVENT",
+            "SIGN UP BY 9/26"
+        ],
+
+    button: "SIGN UP",
+    link: "spawn-camp-signup.html"
+
+},
+
+
+    "event-details": {
+
+        image:
+            "spawn-camp-images/sc-angle-jeep-roof.png",
+
+        alt:
+            "Spawn Camp",
+
+        title:
+            "Event Details",
+
+        description:
+            "Sign ups are open now. Grab your squad and lock in. All equipment will be provided and the bracket will be built the night of the event. Reach out with any questions.",
+
+        meta: [
+            "OCT 2ND",
+            "7PM",
+            "KENOSHA",
+            "SIGN UP BY 9/26"
+        ],
+
+        button: "SIGN UP",
+        link: "spawn-camp-signup.html"
+            
+
+        
+
+    },
+
+
+    "bracket": {
+
+        image:
+            "spawn-camp-images/sc-nv-side-jeep-light.png",
+
+        alt:
+            "Spawn Camp tournament",
+
+        title:
+            "Jump into the action",
+
+        description:
+            "Track the bracket live after each match to see who you might be up against. View the current tournament bracket and look back at previous tournaments.",
+
+        meta: [
+            "LIVE",
+            "TOURNAMENT",
+            "BRACKET",
+            "SIGN UP BY 9/26"
+        ],
+
+        button: "VIEW BRACKET",
+        link: "spawn-camp-bracket.html"
+
+    },
+
+
+    "stats": {
+
+        image:
+            "spawn-camp-images/sc-nv-side-jeep-light-straight-face-crop.png",
+
+        alt:
+            "Spawn Camp players",
+
+        title:
+            "Keep track of the action",
+
+        description:
+            "Follow the stats throughout Spawn Camp and see how players and teams are performing as the tournament unfolds.",
+
+        meta: [
+            "LIVE",
+            "PLAYER STATS",
+            "TEAM STATS",
+            "SIGN UP BY 9/26"
+        ],
+
+        button: "VIEW STATS",
+        link: "spawn-camp-stats.html"
+
+    }
+
+};
+
+
+// ==========================================
+// TAB CLICK HANDLER
+// ==========================================
+
+serviceTabs.forEach(function(tab) {
+
+    tab.addEventListener("click", function() {
+
+        const service =
+            this.dataset.service;
+
+        const content =
+            serviceContent[service];
+
+        serviceTabs.forEach(function(otherTab) {
+
+            otherTab.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+
+        if (!content) {
+            return;
+        }
+
+
+        // Animate card out
+
+const serviceCard =
+    document.querySelector(".service-card");
+
+serviceCard.classList.add("is-changing");
+
+
+setTimeout(function() {
+
+    // Update card content
+
+    serviceImage.src =
+        content.image;
+
+    serviceImage.alt =
+        content.alt;
+
+   serviceTitle.textContent =
+    content.title;
+
+serviceDescription.textContent =
+    content.description;
+
+
+// Update metadata
+
+serviceMeta.innerHTML = "";
+
+content.meta.forEach(function(item) {
+
+    const span =
+        document.createElement("span");
+
+    span.textContent =
+        item;
+
+    serviceMeta.appendChild(span);
+
+});
+
+
+// Update button
+
+serviceButton.textContent =
+    content.button;
+
+serviceButton.href =
+    content.link || "#";
+    // Animate card back in
+
+    serviceCard.classList.remove("is-changing");
+
+}, 200);
+
+    });
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>

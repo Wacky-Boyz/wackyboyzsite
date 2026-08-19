@@ -1,0 +1,2857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spawn-camp-style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Spawn Camp — Stats</title>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         SITE HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+
+                <img
+                    src="wackyboyzlogo-orange.png"
+                    alt="Home"
+                >
+
+            </a>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="spawn-camp.html">
+                    Spawn Camp
+                </a>
+
+                <a href="about">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- ======================================
+             PAGE HEADER
+        ====================================== -->
+
+        <section class="sc-page-header">
+
+            <span class="section-line"></span>
+
+            <h1>
+                SPAWN CAMP
+            </h1>
+
+            <p>
+                STATS
+            </p>
+
+        </section>
+
+
+
+        <!-- ======================================
+             STATS SECTION
+        ====================================== -->
+
+        <section class="stats-section">
+
+
+            <!-- ==================================
+                 STATS HEADER
+            ================================== -->
+
+            <div class="stats-header">
+
+                <div>
+
+                    <h2>
+                        2026 STATS
+                    </h2>
+
+                    <p id="stats-status">
+                        Loading tournament stats...
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="spawn-camp-bracket.html"
+                    class="sc-button"
+                >
+                    VIEW BRACKET
+                </a>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 TOURNAMENT SUMMARY
+            ================================== -->
+
+            <div class="stats-summary">
+
+
+                <div class="stats-summary-card">
+
+                    <span class="stats-summary-label">
+                        MATCHES
+                    </span>
+
+                    <strong id="total-matches">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stats-summary-card">
+
+                    <span class="stats-summary-label">
+                        PLAYERS
+                    </span>
+
+                    <strong id="total-players">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stats-summary-card">
+
+                    <span class="stats-summary-label">
+                        TEAMS
+                    </span>
+
+                    <strong id="total-teams">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stats-summary-card">
+
+                    <span class="stats-summary-label">
+                        GAMES
+                    </span>
+
+                    <strong id="total-games">
+                        —
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+            <!-- ==================================
+                 STATS FILTERS
+            ================================== -->
+
+            <div class="stats-filters">
+
+                <div class="stats-filter">
+
+                    <label for="filter-game">
+                        GAME
+                    </label>
+
+                    <select id="filter-game">
+                        <option value="all">
+                            ALL GAMES
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="stats-filter">
+
+                    <label for="filter-team">
+                        TEAM
+                    </label>
+
+                    <select id="filter-team">
+                        <option value="all">
+                            ALL TEAMS
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="stats-filter">
+
+                    <label for="filter-player">
+                        PLAYER
+                    </label>
+
+                    <select id="filter-player">
+                        <option value="all">
+                            ALL PLAYERS
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="stats-filter">
+
+                    <label for="filter-round">
+                        ROUND
+                    </label>
+
+                    <select id="filter-round">
+                        <option value="all">
+                            ALL ROUNDS
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="sc-button"
+                    id="reset-stats-filters"
+                    class="stats-filter-reset"
+                >
+                    RESET FILTERS
+                </button>
+
+            </div>
+
+            <!-- ==================================
+                 PLAYER LEADERBOARD
+            ================================== -->
+
+            <div class="stats-panel">
+
+
+                <div class="stats-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Player Leaderboard
+                        </h2>
+
+                        <p>
+                            Tournament performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stats-table-wrapper">
+
+                    <table class="stats-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    PLAYER
+                                </th>
+
+                                <th>
+                                    TEAM
+                                </th>
+
+                                <th>
+                                    K
+                                </th>
+
+                                <th>
+                                    D
+                                </th>
+
+                                <th>
+                                    A
+                                </th>
+
+                                <th>
+                                    KDA
+                                </th>
+
+                                <th>
+                                    SCORE
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="player-stats-body">
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="stats-loading"
+                                >
+                                    Loading player stats...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- ==================================
+                TEAM LEADERBOARD
+            ================================== -->
+
+            <div class="stats-panel">
+
+                <div class="stats-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Team Leaderboard
+                        </h2>
+
+                        <p>
+                            Team performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-table-wrapper">
+
+                    <table class="stats-table team-stats-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    TEAM
+                                </th>
+
+                                <th>
+                                    MATCHES
+                                </th>
+
+                                <th>
+                                    K
+                                </th>
+
+                                <th>
+                                    D
+                                </th>
+
+                                <th>
+                                    A
+                                </th>
+
+                                <th>
+                                    KDA
+                                </th>
+
+                                <th>
+                                    SCORE
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="team-stats-body">
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="stats-loading"
+                                >
+                                    Loading team stats...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 GAME BREAKDOWN
+            ================================== -->
+
+            <div class="stats-panel">
+
+
+                <div class="stats-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Game Breakdown
+                        </h2>
+
+                        <p>
+                            Stats by game
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    id="game-breakdown"
+                    class="game-breakdown"
+                >
+
+                    <div class="stats-loading">
+                        Loading game data...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="sc-footer">
+
+        <p>
+            &copy; 2026 Wacky Boyz
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==========================================
+         STATS JAVASCRIPT
+    ========================================== -->
+
+
+<script>
+
+    // ==========================================
+    // API
+    // ==========================================
+
+    const API_URL =
+        "https://script.google.com/macros/s/AKfycbxRQvaLmNAn2z_gtb89Q3yzwLN8WkI7YjXJN2rTJfwn2oTbEZu0cnaBlNlF9RyGyv3x/exec";
+
+
+    // ==========================================
+    // ELEMENTS
+    // ==========================================
+
+    const statsStatus =
+        document.getElementById(
+            "stats-status"
+        );
+
+    const totalMatches =
+        document.getElementById(
+            "total-matches"
+        );
+
+    const totalPlayers =
+        document.getElementById(
+            "total-players"
+        );
+
+    const totalTeams =
+        document.getElementById(
+            "total-teams"
+        );
+
+    const totalGames =
+        document.getElementById(
+            "total-games"
+        );
+
+    const playerStatsBody =
+        document.getElementById(
+            "player-stats-body"
+        );
+
+    const teamStatsBody =
+        document.getElementById(
+            "team-stats-body"
+        );
+
+    const gameBreakdown =
+        document.getElementById(
+            "game-breakdown"
+        );
+
+
+    // ==========================================
+    // FILTER ELEMENTS
+    // ==========================================
+
+    const filterGame =
+        document.getElementById(
+            "filter-game"
+        );
+
+    const filterTeam =
+        document.getElementById(
+            "filter-team"
+        );
+
+    const filterPlayer =
+        document.getElementById(
+            "filter-player"
+        );
+
+    const filterRound =
+        document.getElementById(
+            "filter-round"
+        );
+
+    const resetStatsFilters =
+        document.getElementById(
+            "reset-stats-filters"
+        );
+
+
+    // ==========================================
+    // STORED STATS
+    // ==========================================
+
+    let allStats = [];
+
+
+    // ==========================================
+    // TABLE SORT STATE
+    // ==========================================
+
+    /*
+     * Each leaderboard remembers its own
+     * sorting independently.
+     *
+     * Player leaderboard starts with:
+     * Kills — descending
+     *
+     * Team leaderboard starts with:
+     * KDA — descending
+     */
+
+    const playerSort = {
+        key: "kills",
+        direction: "desc"
+    };
+
+    const teamSort = {
+        key: "kda",
+        direction: "desc"
+    };
+
+
+    // ==========================================
+    // LOAD STATS
+    // ==========================================
+
+    async function loadStats() {
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL + "?action=stats"
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!result.success) {
+
+                throw new Error(
+                    result.error ||
+                    "Unable to load stats"
+                );
+
+            }
+
+
+            allStats =
+                result.data || [];
+
+
+            populateFilters(
+                allStats
+            );
+
+
+            /*
+             * Re-apply the currently selected
+             * filters after every refresh.
+             *
+             * This means the page won't jump
+             * back to ALL when the 30-second
+             * refresh happens.
+             */
+
+            applyStatsFilters();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Stats error:",
+                error
+            );
+
+
+            statsStatus.textContent =
+                "Unable to load tournament stats.";
+
+
+            playerStatsBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        class="stats-error"
+                    >
+                        Stats are currently unavailable.
+                    </td>
+                </tr>
+            `;
+
+
+            teamStatsBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        class="stats-error"
+                    >
+                        Team stats are currently unavailable.
+                    </td>
+                </tr>
+            `;
+
+
+            gameBreakdown.innerHTML = `
+                <div class="stats-error">
+                    Unable to load game data.
+                </div>
+            `;
+
+        }
+
+    }
+
+
+    // ==========================================
+    // POPULATE FILTERS
+    // ==========================================
+
+    function populateFilters(
+        stats
+    ) {
+
+        populateFilter(
+            filterGame,
+            stats,
+            "Game",
+            "ALL GAMES"
+        );
+
+
+        populateFilter(
+            filterTeam,
+            stats,
+            "Team",
+            "ALL TEAMS"
+        );
+
+
+        populatePlayerFilter(
+            stats
+        );
+
+
+        populateFilter(
+            filterRound,
+            stats,
+            "Round",
+            "ALL ROUNDS"
+        );
+
+
+        updateFilterStyles();
+
+    }
+
+
+    // ==========================================
+    // POPULATE INDIVIDUAL FILTER
+    // ==========================================
+
+    function populateFilter(
+        select,
+        stats,
+        field,
+        defaultLabel
+    ) {
+
+        const currentValue =
+            select.value;
+
+
+        const values =
+            [...new Set(
+
+                stats
+                    .map(function(stat) {
+
+                        return stat[field];
+
+                    })
+
+                    .filter(function(value) {
+
+                        return (
+                            value !== undefined &&
+                            value !== null &&
+                            String(value).trim() !== ""
+                        );
+
+                    })
+
+                    .map(function(value) {
+
+                        return String(value).trim();
+
+                    })
+
+            )];
+
+
+        values.sort(function(a, b) {
+
+            return a.localeCompare(
+                b,
+                undefined,
+                {
+                    numeric: true,
+                    sensitivity: "base"
+                }
+            );
+
+        });
+
+
+        select.innerHTML = "";
+
+
+        const defaultOption =
+            document.createElement(
+                "option"
+            );
+
+
+        defaultOption.value =
+            "all";
+
+
+        defaultOption.textContent =
+            defaultLabel;
+
+
+        select.appendChild(
+            defaultOption
+        );
+
+
+        values.forEach(function(value) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                value;
+
+
+            option.textContent =
+                value;
+
+
+            select.appendChild(
+                option
+            );
+
+        });
+
+
+        if (
+            values.includes(
+                currentValue
+            )
+        ) {
+
+            select.value =
+                currentValue;
+
+        }
+
+        else {
+
+            select.value =
+                "all";
+
+        }
+
+    }
+
+
+    // ==========================================
+    // POPULATE PLAYER FILTER
+    // ==========================================
+
+    function populatePlayerFilter(
+        stats
+    ) {
+
+        const selectedTeam =
+            filterTeam.value;
+
+
+        const selectedGame =
+            filterGame.value;
+
+
+        const selectedRound =
+            filterRound.value;
+
+
+        const currentPlayer =
+            filterPlayer.value;
+
+
+        const availablePlayers =
+            stats.filter(function(stat) {
+
+                const teamMatches =
+                    selectedTeam === "all" ||
+                    String(
+                        stat.Team || ""
+                    ) === selectedTeam;
+
+
+                const gameMatches =
+                    selectedGame === "all" ||
+                    String(
+                        stat.Game || ""
+                    ) === selectedGame;
+
+
+                const roundMatches =
+                    selectedRound === "all" ||
+                    String(
+                        stat.Round || ""
+                    ) === selectedRound;
+
+
+                return (
+                    teamMatches &&
+                    gameMatches &&
+                    roundMatches
+                );
+
+            });
+
+
+        const players =
+            [...new Set(
+
+                availablePlayers
+
+                    .map(function(stat) {
+
+                        return stat.Player;
+
+                    })
+
+                    .filter(function(value) {
+
+                        return (
+                            value !== undefined &&
+                            value !== null &&
+                            String(value).trim() !== ""
+                        );
+
+                    })
+
+                    .map(function(value) {
+
+                        return String(value).trim();
+
+                    })
+
+            )];
+
+
+        players.sort(function(a, b) {
+
+            return a.localeCompare(
+                b,
+                undefined,
+                {
+                    numeric: true,
+                    sensitivity: "base"
+                }
+            );
+
+        });
+
+
+        filterPlayer.innerHTML = "";
+
+
+        const defaultOption =
+            document.createElement(
+                "option"
+            );
+
+
+        defaultOption.value =
+            "all";
+
+
+        defaultOption.textContent =
+            "ALL PLAYERS";
+
+
+        filterPlayer.appendChild(
+            defaultOption
+        );
+
+
+        players.forEach(function(player) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                player;
+
+
+            option.textContent =
+                player;
+
+
+            filterPlayer.appendChild(
+                option
+            );
+
+        });
+
+
+        /*
+         * Keep the currently selected player
+         * if that player is still available.
+         *
+         * Otherwise reset to ALL PLAYERS.
+         */
+
+        if (
+            players.includes(
+                currentPlayer
+            )
+        ) {
+
+            filterPlayer.value =
+                currentPlayer;
+
+        }
+
+        else {
+
+            filterPlayer.value =
+                "all";
+
+        }
+
+    }
+
+
+    // ==========================================
+    // APPLY FILTERS
+    // ==========================================
+
+    function applyStatsFilters() {
+
+        /*
+         * Rebuild the player dropdown first.
+         *
+         * This makes Team, Game and Round
+         * selections affect which players
+         * are available.
+         */
+
+        populatePlayerFilter(
+            allStats
+        );
+
+
+        const selectedGame =
+            filterGame.value;
+
+
+        const selectedTeam =
+            filterTeam.value;
+
+
+        const selectedPlayer =
+            filterPlayer.value;
+
+
+        const selectedRound =
+            filterRound.value;
+
+
+        const filteredStats =
+            allStats.filter(
+                function(stat) {
+
+                    const gameMatches =
+                        selectedGame === "all" ||
+                        String(
+                            stat.Game || ""
+                        ) === selectedGame;
+
+
+                    const teamMatches =
+                        selectedTeam === "all" ||
+                        String(
+                            stat.Team || ""
+                        ) === selectedTeam;
+
+
+                    const playerMatches =
+                        selectedPlayer === "all" ||
+                        String(
+                            stat.Player || ""
+                        ) === selectedPlayer;
+
+
+                    const roundMatches =
+                        selectedRound === "all" ||
+                        String(
+                            stat.Round || ""
+                        ) === selectedRound;
+
+
+                    return (
+                        gameMatches &&
+                        teamMatches &&
+                        playerMatches &&
+                        roundMatches
+                    );
+
+                }
+            );
+
+
+        updateFilterStyles();
+
+
+        renderStats(
+            filteredStats
+        );
+
+    }
+
+
+    // ==========================================
+    // FILTER VISUAL STATE
+    // ==========================================
+
+    function updateFilterStyles() {
+
+        filterGame.classList.toggle(
+            "filter-active",
+            filterGame.value !== "all"
+        );
+
+
+        filterTeam.classList.toggle(
+            "filter-active",
+            filterTeam.value !== "all"
+        );
+
+
+        filterPlayer.classList.toggle(
+            "filter-active",
+            filterPlayer.value !== "all"
+        );
+
+
+        filterRound.classList.toggle(
+            "filter-active",
+            filterRound.value !== "all"
+        );
+
+    }
+
+
+    // ==========================================
+    // RESET FILTERS
+    // ==========================================
+
+    function resetFilters() {
+
+        filterGame.value =
+            "all";
+
+
+        filterTeam.value =
+            "all";
+
+
+        filterRound.value =
+            "all";
+
+
+        /*
+         * Rebuild the player list now that
+         * Team/Game/Round are reset.
+         */
+
+        populatePlayerFilter(
+            allStats
+        );
+
+
+        filterPlayer.value =
+            "all";
+
+
+        updateFilterStyles();
+
+
+        renderStats(
+            allStats
+        );
+
+    }
+
+
+    // ==========================================
+    // RENDER STATS
+    // ==========================================
+
+    function renderStats(
+        stats
+    ) {
+
+        if (
+            !stats ||
+            stats.length === 0
+        ) {
+
+            statsStatus.textContent =
+                "No tournament stats have been recorded yet.";
+
+
+            totalMatches.textContent =
+                "0";
+
+
+            totalPlayers.textContent =
+                "0";
+
+
+            totalTeams.textContent =
+                "0";
+
+
+            totalGames.textContent =
+                "0";
+
+
+            playerStatsBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        class="stats-empty"
+                    >
+                        <h3>
+                            Stats coming soon
+                        </h3>
+
+                        <p>
+                            Player statistics will appear here
+                            once tournament matches have been recorded.
+                        </p>
+                    </td>
+                </tr>
+            `;
+
+
+            teamStatsBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        class="stats-empty"
+                    >
+                        <h3>
+                            Team stats coming soon
+                        </h3>
+
+                        <p>
+                            Team statistics will appear here
+                            once tournament matches have been recorded.
+                        </p>
+                    </td>
+                </tr>
+            `;
+
+
+            gameBreakdown.innerHTML = `
+                <div class="stats-empty">
+                    No game statistics recorded yet.
+                </div>
+            `;
+
+
+            return;
+
+        }
+
+
+        // ======================================
+        // UNIQUE DATA
+        // ======================================
+
+        const matches =
+            new Set(
+                stats.map(
+                    stat => stat["Match ID"]
+                )
+            );
+
+
+        const players =
+            new Set(
+                stats.map(
+                    stat => stat.Player
+                )
+            );
+
+
+        const teams =
+            new Set(
+                stats.map(
+                    stat => stat.Team
+                )
+            );
+
+
+        const games =
+            new Set(
+                stats.map(
+                    stat => stat.Game
+                )
+            );
+
+
+        // ======================================
+        // SUMMARY
+        // ======================================
+
+        totalMatches.textContent =
+            matches.size;
+
+
+        totalPlayers.textContent =
+            players.size;
+
+
+        totalTeams.textContent =
+            teams.size;
+
+
+        totalGames.textContent =
+            games.size;
+
+
+        statsStatus.textContent =
+            `${matches.size} matches • ${players.size} players • LIVE`;
+
+
+        // ======================================
+        // PLAYER TOTALS
+        // ======================================
+
+        const playerTotals = {};
+
+
+        stats.forEach(function(stat) {
+
+            const player =
+                stat.Player || "Unknown";
+
+
+            if (!playerTotals[player]) {
+
+                playerTotals[player] = {
+
+                    player:
+                        player,
+
+                    team:
+                        stat.Team || "—",
+
+                    kills:
+                        0,
+
+                    deaths:
+                        0,
+
+                    assists:
+                        0,
+
+                    score:
+                        0
+
+                };
+
+            }
+
+
+            playerTotals[player].kills +=
+                Number(stat.Kills) || 0;
+
+
+            playerTotals[player].deaths +=
+                Number(stat.Deaths) || 0;
+
+
+            playerTotals[player].assists +=
+                Number(stat.Assists) || 0;
+
+
+            playerTotals[player].score +=
+                Number(stat.Score) || 0;
+
+        });
+
+
+        // ======================================
+        // PLAYER LEADERBOARD
+        // ======================================
+
+        const leaderboard =
+            Object.values(
+                playerTotals
+            );
+
+
+        sortLeaderboard(
+            leaderboard,
+            playerSort
+        );
+
+
+        // ======================================
+        // RENDER PLAYER TABLE
+        // ======================================
+
+        playerStatsBody.innerHTML =
+            "";
+
+
+        leaderboard.forEach(
+            function(player, index) {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                const kda =
+                    calculateKDA(
+                        player.kills,
+                        player.deaths,
+                        player.assists
+                    );
+
+
+                row.innerHTML = `
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td class="stats-player">
+                        ${escapeHTML(
+                            player.player
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            player.team
+                        )}
+                    </td>
+
+                    <td class="stat-number">
+                        ${player.kills}
+                    </td>
+
+                    <td class="stat-number">
+                        ${player.deaths}
+                    </td>
+
+                    <td class="stat-number">
+                        ${player.assists}
+                    </td>
+
+                    <td class="stat-kda">
+                        ${kda}
+                    </td>
+
+                    <td class="stat-number">
+                        ${player.score}
+                    </td>
+                `;
+
+
+                playerStatsBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+        // ======================================
+        // TEAM LEADERBOARD
+        // ======================================
+
+        renderTeamLeaderboard(
+            stats
+        );
+
+
+        // ======================================
+        // GAME BREAKDOWN
+        // ======================================
+
+        renderGameBreakdown(
+            stats
+        );
+
+
+        // ======================================
+        // UPDATE SORT INDICATORS
+        // ======================================
+
+        /*
+         * IMPORTANT:
+         *
+         * Sorting re-renders the tables.
+         * After that happens, update the header
+         * indicators so the arrow moves to the
+         * column that is actually being sorted.
+         */
+
+        updateSortHeaders();
+
+    }
+
+
+    // ==========================================
+    // CALCULATE KDA
+    // ==========================================
+
+    function calculateKDA(
+        kills,
+        deaths,
+        assists
+    ) {
+
+        if (deaths === 0) {
+
+            return (
+                kills +
+                assists
+            ).toFixed(2);
+
+        }
+
+
+        return (
+            (
+                kills +
+                assists
+            ) / deaths
+
+        ).toFixed(2);
+
+    }
+
+
+    // ==========================================
+    // GENERIC LEADERBOARD SORT
+    // ==========================================
+
+    function sortLeaderboard(
+        leaderboard,
+        sortState
+    ) {
+
+        leaderboard.sort(
+            function(a, b) {
+
+                let aValue;
+                let bValue;
+
+
+                // ----------------------------------
+                // KDA
+                // ----------------------------------
+
+                if (
+                    sortState.key === "kda"
+                ) {
+
+                    aValue =
+                        Number(
+                            calculateKDA(
+                                a.kills,
+                                a.deaths,
+                                a.assists
+                            )
+                        );
+
+
+                    bValue =
+                        Number(
+                            calculateKDA(
+                                b.kills,
+                                b.deaths,
+                                b.assists
+                            )
+                        );
+
+                }
+
+
+                // ----------------------------------
+                // MATCH COUNT
+                // ----------------------------------
+
+                else if (
+                    sortState.key === "matches"
+                ) {
+
+                    aValue =
+                        a.matches.size;
+
+
+                    bValue =
+                        b.matches.size;
+
+                }
+
+
+                // ----------------------------------
+                // TEXT VALUES
+                // ----------------------------------
+
+                else if (
+                    sortState.key === "player"
+                ) {
+
+                    aValue =
+                        String(
+                            a.player || ""
+                        ).toLowerCase();
+
+
+                    bValue =
+                        String(
+                            b.player || ""
+                        ).toLowerCase();
+
+                }
+
+
+                else if (
+                    sortState.key === "team"
+                ) {
+
+                    aValue =
+                        String(
+                            a.team || ""
+                        ).toLowerCase();
+
+
+                    bValue =
+                        String(
+                            b.team || ""
+                        ).toLowerCase();
+
+                }
+
+
+                // ----------------------------------
+                // NUMERIC VALUES
+                // ----------------------------------
+
+                else {
+
+                    aValue =
+                        Number(
+                            a[sortState.key]
+                        ) || 0;
+
+
+                    bValue =
+                        Number(
+                            b[sortState.key]
+                        ) || 0;
+
+                }
+
+
+                let comparison = 0;
+
+
+                if (
+                    typeof aValue === "string" &&
+                    typeof bValue === "string"
+                ) {
+
+                    comparison =
+                        aValue.localeCompare(
+                            bValue,
+                            undefined,
+                            {
+                                numeric: true,
+                                sensitivity: "base"
+                            }
+                        );
+
+                }
+
+                else {
+
+                    comparison =
+                        aValue - bValue;
+
+                }
+
+
+                return (
+                    sortState.direction === "asc"
+                        ? comparison
+                        : -comparison
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // PLAYER TABLE SORT
+    // ==========================================
+
+    function sortPlayers(
+        key
+    ) {
+
+        if (
+            playerSort.key === key
+        ) {
+
+            playerSort.direction =
+                playerSort.direction === "asc"
+                    ? "desc"
+                    : "asc";
+
+        }
+
+        else {
+
+            playerSort.key =
+                key;
+
+
+            /*
+             * Text columns start ascending.
+             * Numeric columns start descending.
+             */
+
+            if (
+                key === "player" ||
+                key === "team"
+            ) {
+
+                playerSort.direction =
+                    "asc";
+
+            }
+
+            else {
+
+                playerSort.direction =
+                    "desc";
+
+            }
+
+        }
+
+
+        applyStatsFilters();
+
+    }
+
+
+    // ==========================================
+    // TEAM TABLE SORT
+    // ==========================================
+
+    function sortTeams(
+        key
+    ) {
+
+        if (
+            teamSort.key === key
+        ) {
+
+            teamSort.direction =
+                teamSort.direction === "asc"
+                    ? "desc"
+                    : "asc";
+
+        }
+
+        else {
+
+            teamSort.key =
+                key;
+
+
+            /*
+             * Text columns start ascending.
+             * Numeric columns start descending.
+             */
+
+            if (
+                key === "team"
+            ) {
+
+                teamSort.direction =
+                    "asc";
+
+            }
+
+            else {
+
+                teamSort.direction =
+                    "desc";
+
+            }
+
+        }
+
+
+        applyStatsFilters();
+
+    }
+
+
+    // ==========================================
+    // SORT ARROW
+    // ==========================================
+
+    function sortArrow(
+        sortState,
+        key
+    ) {
+
+        if (
+            sortState.key !== key
+        ) {
+
+            return "";
+
+        }
+
+
+        return (
+            sortState.direction === "asc"
+                ? " ↑"
+                : " ↓"
+        );
+
+    }
+
+
+    // ==========================================
+    // MAKE TABLE HEADERS SORTABLE
+    // ==========================================
+
+    function setupSortableHeaders() {
+
+        const playerTable =
+            document.querySelector(
+                ".stats-table:not(.team-stats-table)"
+            );
+
+
+        const teamTable =
+            document.querySelector(
+                ".team-stats-table"
+            );
+
+
+        // --------------------------------------
+        // PLAYER TABLE
+        // --------------------------------------
+
+        if (playerTable) {
+
+            const headers =
+                playerTable.querySelectorAll(
+                    "thead th"
+                );
+
+
+            const playerColumns = [
+
+                null,
+
+                "player",
+
+                "team",
+
+                "kills",
+
+                "deaths",
+
+                "assists",
+
+                "kda",
+
+                "score"
+
+            ];
+
+
+            headers.forEach(
+                function(header, index) {
+
+                    const key =
+                        playerColumns[index];
+
+
+                    if (!key) {
+
+                        return;
+
+                    }
+
+
+                    header.classList.add(
+                        "sortable-header"
+                    );
+
+
+                    header.setAttribute(
+                        "role",
+                        "button"
+                    );
+
+
+                    header.setAttribute(
+                        "tabindex",
+                        "0"
+                    );
+
+
+                    header.addEventListener(
+                        "click",
+                        function() {
+
+                            sortPlayers(
+                                key
+                            );
+
+                        }
+                    );
+
+
+                    header.addEventListener(
+                        "keydown",
+                        function(event) {
+
+                            if (
+                                event.key === "Enter" ||
+                                event.key === " "
+                            ) {
+
+                                event.preventDefault();
+
+
+                                sortPlayers(
+                                    key
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+
+        // --------------------------------------
+        // TEAM TABLE
+        // --------------------------------------
+
+        if (teamTable) {
+
+            const headers =
+                teamTable.querySelectorAll(
+                    "thead th"
+                );
+
+
+            const teamColumns = [
+
+                null,
+
+                "team",
+
+                "matches",
+
+                "kills",
+
+                "deaths",
+
+                "assists",
+
+                "kda",
+
+                "score"
+
+            ];
+
+
+            headers.forEach(
+                function(header, index) {
+
+                    const key =
+                        teamColumns[index];
+
+
+                    if (!key) {
+
+                        return;
+
+                    }
+
+
+                    header.classList.add(
+                        "sortable-header"
+                    );
+
+
+                    header.setAttribute(
+                        "role",
+                        "button"
+                    );
+
+
+                    header.setAttribute(
+                        "tabindex",
+                        "0"
+                    );
+
+
+                    header.addEventListener(
+                        "click",
+                        function() {
+
+                            sortTeams(
+                                key
+                            );
+
+                        }
+                    );
+
+
+                    header.addEventListener(
+                        "keydown",
+                        function(event) {
+
+                            if (
+                                event.key === "Enter" ||
+                                event.key === " "
+                            ) {
+
+                                event.preventDefault();
+
+
+                                sortTeams(
+                                    key
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+
+        updateSortHeaders();
+
+    }
+
+
+    // ==========================================
+    // UPDATE SORT HEADER INDICATORS
+    // ==========================================
+
+    function updateSortHeaders() {
+
+        const playerTable =
+            document.querySelector(
+                ".stats-table:not(.team-stats-table)"
+            );
+
+
+        const teamTable =
+            document.querySelector(
+                ".team-stats-table"
+            );
+
+
+        // --------------------------------------
+        // PLAYER HEADERS
+        // --------------------------------------
+
+        if (playerTable) {
+
+            const headers =
+                playerTable.querySelectorAll(
+                    "thead th"
+                );
+
+
+            const playerColumns = [
+
+                null,
+
+                "player",
+
+                "team",
+
+                "kills",
+
+                "deaths",
+
+                "assists",
+
+                "kda",
+
+                "score"
+
+            ];
+
+
+            headers.forEach(
+                function(header, index) {
+
+                    const key =
+                        playerColumns[index];
+
+
+                    if (!key) {
+
+                        return;
+
+                    }
+
+
+                    header.classList.toggle(
+                        "sort-active",
+                        playerSort.key === key
+                    );
+
+
+                    header.setAttribute(
+                        "aria-sort",
+                        playerSort.key === key
+                            ? (
+                                playerSort.direction === "asc"
+                                    ? "ascending"
+                                    : "descending"
+                            )
+                            : "none"
+                    );
+
+
+                    /*
+                     * Store the original header text
+                     * once so arrows never become part
+                     * of the permanent label.
+                     */
+
+                    const originalText =
+                        header.dataset.label ||
+                        header.textContent
+                            .replace(/[↑↓]/g, "")
+                            .trim();
+
+
+                    header.dataset.label =
+                        originalText;
+
+
+                    header.textContent =
+                        originalText +
+                        sortArrow(
+                            playerSort,
+                            key
+                        );
+
+                }
+            );
+
+        }
+
+
+        // --------------------------------------
+        // TEAM HEADERS
+        // --------------------------------------
+
+        if (teamTable) {
+
+            const headers =
+                teamTable.querySelectorAll(
+                    "thead th"
+                );
+
+
+            const teamColumns = [
+
+                null,
+
+                "team",
+
+                "matches",
+
+                "kills",
+
+                "deaths",
+
+                "assists",
+
+                "kda",
+
+                "score"
+
+            ];
+
+
+            headers.forEach(
+                function(header, index) {
+
+                    const key =
+                        teamColumns[index];
+
+
+                    if (!key) {
+
+                        return;
+
+                    }
+
+
+                    header.classList.toggle(
+                        "sort-active",
+                        teamSort.key === key
+                    );
+
+
+                    header.setAttribute(
+                        "aria-sort",
+                        teamSort.key === key
+                            ? (
+                                teamSort.direction === "asc"
+                                    ? "ascending"
+                                    : "descending"
+                            )
+                            : "none"
+                    );
+
+
+                    const originalText =
+                        header.dataset.label ||
+                        header.textContent
+                            .replace(/[↑↓]/g, "")
+                            .trim();
+
+
+                    header.dataset.label =
+                        originalText;
+
+
+                    header.textContent =
+                        originalText +
+                        sortArrow(
+                            teamSort,
+                            key
+                        );
+
+                }
+            );
+
+        }
+
+    }
+
+
+    // ==========================================
+    // TEAM LEADERBOARD
+    // ==========================================
+
+    function renderTeamLeaderboard(
+        stats
+    ) {
+
+        if (
+            !stats ||
+            stats.length === 0
+        ) {
+
+            teamStatsBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        class="stats-empty-row"
+                    >
+                        No team statistics available.
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        const teamTotals = {};
+
+
+        // ======================================
+        // BUILD TEAM TOTALS
+        // ======================================
+
+        stats.forEach(function(stat) {
+
+            const team =
+                stat.Team || "Unknown";
+
+
+            if (!teamTotals[team]) {
+
+                teamTotals[team] = {
+
+                    team:
+                        team,
+
+                    matches:
+                        new Set(),
+
+                    kills:
+                        0,
+
+                    deaths:
+                        0,
+
+                    assists:
+                        0,
+
+                    score:
+                        0
+
+                };
+
+            }
+
+
+            // ----------------------------------
+            // TRACK UNIQUE MATCHES
+            // ----------------------------------
+
+            if (
+                stat["Match ID"] !== undefined &&
+                stat["Match ID"] !== null &&
+                String(
+                    stat["Match ID"]
+                ).trim() !== ""
+            ) {
+
+                teamTotals[team].matches.add(
+                    String(
+                        stat["Match ID"]
+                    )
+                );
+
+            }
+
+
+            // ----------------------------------
+            // ADD STATISTICS
+            // ----------------------------------
+
+            teamTotals[team].kills +=
+                Number(stat.Kills) || 0;
+
+
+            teamTotals[team].deaths +=
+                Number(stat.Deaths) || 0;
+
+
+            teamTotals[team].assists +=
+                Number(stat.Assists) || 0;
+
+
+            teamTotals[team].score +=
+                Number(stat.Score) || 0;
+
+        });
+
+
+        // ======================================
+        // TEAM LEADERBOARD
+        // ======================================
+
+        const leaderboard =
+            Object.values(
+                teamTotals
+            );
+
+
+        sortLeaderboard(
+            leaderboard,
+            teamSort
+        );
+
+
+        // ======================================
+        // RENDER TABLE
+        // ======================================
+
+        teamStatsBody.innerHTML =
+            "";
+
+
+        leaderboard.forEach(
+            function(team, index) {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                const kda =
+                    calculateKDA(
+                        team.kills,
+                        team.deaths,
+                        team.assists
+                    );
+
+
+                row.innerHTML = `
+                    <td class="stats-rank">
+                        ${index + 1}
+                    </td>
+
+                    <td class="stats-player">
+                        ${escapeHTML(
+                            team.team
+                        )}
+                    </td>
+
+                    <td class="stat-number">
+                        ${team.matches.size}
+                    </td>
+
+                    <td class="stat-number">
+                        ${team.kills}
+                    </td>
+
+                    <td class="stat-number">
+                        ${team.deaths}
+                    </td>
+
+                    <td class="stat-number">
+                        ${team.assists}
+                    </td>
+
+                    <td class="stat-kda">
+                        ${kda}
+                    </td>
+
+                    <td class="stat-score">
+                        ${team.score}
+                    </td>
+                `;
+
+
+                teamStatsBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // GAME BREAKDOWN
+    // ==========================================
+
+    function renderGameBreakdown(
+        stats
+    ) {
+
+        if (
+            !stats ||
+            stats.length === 0
+        ) {
+
+            gameBreakdown.innerHTML = `
+                <div class="stats-empty-row">
+                    No game statistics available.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const gameTotals = {};
+
+
+        // ======================================
+        // BUILD GAME TOTALS
+        // ======================================
+
+        stats.forEach(function(stat) {
+
+            const game =
+                stat.Game || "Unknown";
+
+
+            if (!gameTotals[game]) {
+
+                gameTotals[game] = {
+
+                    game:
+                        game,
+
+                    matches:
+                        new Set(),
+
+                    kills:
+                        0,
+
+                    deaths:
+                        0,
+
+                    assists:
+                        0,
+
+                    score:
+                        0
+
+                };
+
+            }
+
+
+            // ----------------------------------
+            // UNIQUE MATCHES
+            // ----------------------------------
+
+            if (
+                stat["Match ID"] !== undefined &&
+                stat["Match ID"] !== null &&
+                String(
+                    stat["Match ID"]
+                ).trim() !== ""
+            ) {
+
+                gameTotals[game].matches.add(
+                    String(
+                        stat["Match ID"]
+                    )
+                );
+
+            }
+
+
+            // ----------------------------------
+            // TOTAL STATS
+            // ----------------------------------
+
+            gameTotals[game].kills +=
+                Number(stat.Kills) || 0;
+
+
+            gameTotals[game].deaths +=
+                Number(stat.Deaths) || 0;
+
+
+            gameTotals[game].assists +=
+                Number(stat.Assists) || 0;
+
+
+            gameTotals[game].score +=
+                Number(stat.Score) || 0;
+
+        });
+
+
+        // ======================================
+        // SORT GAMES
+        // ======================================
+
+        const games =
+            Object.values(
+                gameTotals
+            ).sort(function(a, b) {
+
+                return (
+                    b.score -
+                    a.score
+                );
+
+            });
+
+
+        // ======================================
+        // CLEAR EXISTING CARDS
+        // ======================================
+
+        gameBreakdown.innerHTML =
+            "";
+
+
+        // ======================================
+        // RENDER GAME CARDS
+        // ======================================
+
+        games.forEach(function(game) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "game-stat-card";
+
+
+            const matchCount =
+                game.matches.size;
+
+
+            card.innerHTML = `
+                <div class="game-stat-card-header">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHTML(
+                                game.game
+                            )}
+                        </h3>
+
+                        <span>
+                            ${matchCount}
+                            MATCH${matchCount === 1 ? "" : "ES"}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-stat-values">
+
+                    <div class="game-stat-value">
+
+                        <strong>
+                            ${game.kills}
+                        </strong>
+
+                        <span>
+                            KILLS
+                        </span>
+
+                    </div>
+
+
+                    <div class="game-stat-value">
+
+                        <strong>
+                            ${game.deaths}
+                        </strong>
+
+                        <span>
+                            DEATHS
+                        </span>
+
+                    </div>
+
+
+                    <div class="game-stat-value">
+
+                        <strong>
+                            ${game.assists}
+                        </strong>
+
+                        <span>
+                            ASSISTS
+                        </span>
+
+                    </div>
+
+
+                    <div class="game-stat-value game-stat-score">
+
+                        <strong>
+                            ${game.score}
+                        </strong>
+
+                        <span>
+                            SCORE
+                        </span>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            gameBreakdown.appendChild(
+                card
+            );
+
+        });
+
+    }
+
+
+    // ==========================================
+    // ESCAPE HTML
+    // ==========================================
+
+    function escapeHTML(
+        value
+    ) {
+
+        return String(value)
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    // ==========================================
+    // INITIAL LOAD
+    // ==========================================
+
+    setupSortableHeaders();
+
+    loadStats();
+
+
+    // ==========================================
+    // FILTER EVENTS
+    // ==========================================
+
+    filterGame.addEventListener(
+        "change",
+        applyStatsFilters
+    );
+
+
+    filterTeam.addEventListener(
+        "change",
+        applyStatsFilters
+    );
+
+
+    filterPlayer.addEventListener(
+        "change",
+        applyStatsFilters
+    );
+
+
+    filterRound.addEventListener(
+        "change",
+        applyStatsFilters
+    );
+
+
+    resetStatsFilters.addEventListener(
+        "click",
+        resetFilters
+    );
+
+
+    // ==========================================
+    // AUTOMATIC REFRESH
+    // ==========================================
+
+    setInterval(
+        function() {
+
+            loadStats();
+
+        },
+        30000
+    );
+
+
+</script>
+
+
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spawn-camp-style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Spawn Camp — Bracket</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                <img src="wackyboyzlogo-orange.png" alt="Home">
+            </a>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="spawn-camp.html">Spawn Camp</a>
+                <a href="about">About</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="sc-page-header">
+
+            <span class="section-line"></span>
+
+            <h1>SPAWN CAMP</h1>
+
+            <p>BRACKET</p>
+
+
+        </section>
+
+
+        <section class="bracket-section">
+
+            <div class="bracket-header">
+
+                <div>
+                    <h2>2026 BRACKET</h2>
+
+                    <p id="bracket-status">
+                        Loading bracket...
+                    </p>
+                </div>
+
+                <a href="spawn-camp-stats.html" class="sc-button">
+                    View Stats
+                </a>
+
+            </div>
+
+
+            <div id="bracket-container">
+
+                <div class="bracket-loading">
+                    Loading tournament data...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="sc-footer">
+        <p>&copy; 2026 Wacky Boyz</p>
+    </footer>
+
+
+<script>
+
+// ==========================================
+// SPAWN CAMP BRACKET
+// ==========================================
+
+let currentBracketMatches = [];
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbznLKEc0ATrYConMYRstm9h0zlsoPVOpaW9MFeiVCNhSXpK1Sp6u6oW7dK6UHxjqBIh/exec";
+
+
+const bracketContainer =
+    document.getElementById("bracket-container");
+
+
+const bracketStatus =
+    document.getElementById("bracket-status");
+
+
+
+// ==========================================
+// REMOVE OLD CONNECTOR GRAPHICS
+// ==========================================
+
+function removeOldBracketGraphics() {
+
+    document
+        .querySelectorAll(
+            ".bracket-connections, " +
+            ".bracket-cross-connections, " +
+            ".sc-bracket-local-lines, " +
+            ".sc-bracket-cross-lines"
+        )
+        .forEach(
+            function(element) {
+
+                element.remove();
+
+            }
+        );
+
+}
+
+
+
+// ==========================================
+// LOAD BRACKET DATA
+// ==========================================
+
+async function loadBracket() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "?action=bracket",
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !result ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result?.error ||
+                "Unable to load bracket."
+            );
+
+        }
+
+
+        if (
+            !Array.isArray(
+                result.data
+            )
+        ) {
+
+            throw new Error(
+                "Bracket data was not returned as an array."
+            );
+
+        }
+
+
+        renderBracket(
+            result.data
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Bracket error:",
+            error
+        );
+
+
+        bracketStatus.textContent =
+            "Unable to load tournament data.";
+
+
+        bracketContainer.innerHTML = `
+
+            <div class="bracket-error">
+
+                <h3>
+                    Bracket unavailable
+                </h3>
+
+                <p>
+                    We couldn't load the tournament
+                    bracket right now. Please try again later.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+// ==========================================
+// RENDER BRACKET
+// ==========================================
+
+function renderBracket(
+    rawMatches
+) {
+
+    // ------------------------------------------
+    // REMOVE ANY LEFTOVER SVGs
+    // ------------------------------------------
+
+    removeOldBracketGraphics();
+
+
+    // ------------------------------------------
+    // CLEAR BRACKET
+    // ------------------------------------------
+
+    bracketContainer.innerHTML = "";
+
+
+    bracketContainer.style.position =
+        "relative";
+
+
+    // ------------------------------------------
+    // EMPTY STATE
+    // ------------------------------------------
+
+    if (
+        !rawMatches ||
+        rawMatches.length === 0
+    ) {
+
+        currentBracketMatches = [];
+
+
+        bracketStatus.textContent =
+            "No matches have been added yet.";
+
+
+        bracketContainer.innerHTML = `
+
+            <div class="bracket-empty">
+
+                <h3>
+                    BRACKET COMING SOON
+                </h3>
+
+                <span class="section-line"></span>
+
+                <p>
+                    The tournament bracket will appear here
+                    once teams have been finalized.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // ------------------------------------------
+    // NORMALIZE DATA
+    // ------------------------------------------
+
+    currentBracketMatches =
+        rawMatches.map(
+            normalizeMatch
+        );
+
+
+    // ------------------------------------------
+    // SEPARATE WINNERS / LOSERS
+    // ------------------------------------------
+
+    const winnersMatches =
+        currentBracketMatches.filter(
+            function(match) {
+
+                return (
+                    normalizeText(
+                        match.Bracket
+                    ) ===
+                    "winners"
+                );
+
+            }
+        );
+
+
+    const losersMatches =
+        currentBracketMatches.filter(
+            function(match) {
+
+                return (
+                    normalizeText(
+                        match.Bracket
+                    ) ===
+                    "losers"
+                );
+
+            }
+        );
+
+
+    // ------------------------------------------
+    // ROUND COUNTS
+    // ------------------------------------------
+
+    const winnersRounds =
+        getUniqueRounds(
+            winnersMatches
+        );
+
+
+    const losersRounds =
+        getUniqueRounds(
+            losersMatches
+        );
+
+
+    const totalRounds =
+        winnersRounds.length +
+        losersRounds.length;
+
+
+    bracketStatus.textContent =
+        `${currentBracketMatches.length} matches • ${totalRounds} rounds • LIVE`;
+
+
+    // ------------------------------------------
+    // WINNERS BRACKET
+    // ------------------------------------------
+
+    if (
+        winnersMatches.length
+    ) {
+
+        bracketContainer.appendChild(
+
+            createBracketSection(
+                "WINNERS BRACKET",
+                winnersMatches,
+                "winners"
+            )
+
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // LOSERS BRACKET
+    // ------------------------------------------
+
+    if (
+        losersMatches.length
+    ) {
+
+        bracketContainer.appendChild(
+
+            createBracketSection(
+                "LOSERS BRACKET",
+                losersMatches,
+                "losers"
+            )
+
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // POSITION AFTER LAYOUT
+    // ------------------------------------------
+
+    requestAnimationFrame(
+        function() {
+
+            requestAnimationFrame(
+                function() {
+
+                    layoutBrackets();
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// NORMALIZE MATCH
+// ==========================================
+
+function normalizeMatch(
+    match
+) {
+
+    return {
+
+        MatchID:
+            cleanValue(
+                match["Match ID"]
+            ),
+
+        Bracket:
+            cleanValue(
+                match["Bracket"]
+            ),
+
+        Round:
+            cleanValue(
+                match["Round"]
+            ),
+
+        MatchNumber:
+            cleanValue(
+                match["Match Number"]
+            ),
+
+        Team1:
+            cleanValue(
+                match["Team 1"]
+            ),
+
+        Team2:
+            cleanValue(
+                match["Team 2"]
+            ),
+
+        Score1:
+            cleanValue(
+                match["Team 1 Score"]
+            ),
+
+        Score2:
+            cleanValue(
+                match["Team 2 Score"]
+            ),
+
+        Winner:
+            cleanValue(
+                match["Winner"]
+            ),
+
+        Status:
+            cleanValue(
+                match["Status"]
+            ),
+
+        NextMatchID:
+            cleanValue(
+                match["Next Match ID"]
+            ),
+
+        LoserNextMatchID:
+            cleanValue(
+                match["Loser Next Match ID"]
+            )
+
+    };
+
+}
+
+
+
+// ==========================================
+// CLEAN VALUE
+// ==========================================
+
+function cleanValue(
+    value
+) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(
+        value
+    ).trim();
+
+}
+
+
+
+// ==========================================
+// NORMALIZE TEXT
+// ==========================================
+
+function normalizeText(
+    value
+) {
+
+    return cleanValue(
+        value
+    )
+        .toLowerCase()
+        .replace(
+            /[\s_-]+/g,
+            ""
+        );
+
+}
+
+
+
+// ==========================================
+// UNIQUE ROUNDS
+// ==========================================
+
+function getUniqueRounds(
+    matches
+) {
+
+    return [
+
+        ...new Set(
+
+            matches
+                .map(
+                    function(match) {
+
+                        return cleanValue(
+                            match.Round
+                        );
+
+                    }
+                )
+                .filter(
+                    function(round) {
+
+                        return round !== "";
+
+                    }
+                )
+
+        )
+
+    ].sort(
+        function(a, b) {
+
+            return (
+                Number(a) -
+                Number(b)
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// FIND MATCH BY REFERENCE
+// ==========================================
+
+function findMatchByReference(
+    reference
+) {
+
+    const target =
+        normalizeText(
+            reference
+        );
+
+
+    if (
+        target === ""
+    ) {
+
+        return null;
+
+    }
+
+
+    return (
+        currentBracketMatches.find(
+            function(match) {
+
+                return (
+                    normalizeText(
+                        match.MatchID
+                    ) ===
+                    target
+                );
+
+            }
+        ) ||
+        null
+    );
+
+}
+
+
+
+// ==========================================
+// CREATE BRACKET SECTION
+// ==========================================
+
+function createBracketSection(
+    title,
+    matches,
+    bracketType
+) {
+
+    const section =
+        document.createElement(
+            "div"
+        );
+
+
+    section.className =
+        "bracket-group";
+
+
+    section.dataset.bracket =
+        bracketType;
+
+
+    section.style.position =
+        "relative";
+
+
+    // ------------------------------------------
+    // TITLE
+    // ------------------------------------------
+
+    const heading =
+        document.createElement(
+            "h2"
+        );
+
+
+    heading.className =
+        "bracket-group-title";
+
+
+    heading.textContent =
+        title;
+
+
+    section.appendChild(
+        heading
+    );
+
+
+    // ------------------------------------------
+    // ROUNDS CONTAINER
+    // ------------------------------------------
+
+    const roundsContainer =
+        document.createElement(
+            "div"
+        );
+
+
+    roundsContainer.className =
+        "bracket-rounds";
+
+
+    roundsContainer.style.position =
+        "relative";
+
+
+    roundsContainer.style.overflow =
+        "visible";
+
+
+    // ------------------------------------------
+    // GET ROUNDS
+    // ------------------------------------------
+
+    const rounds =
+        getUniqueRounds(
+            matches
+        );
+
+
+    rounds.forEach(
+        function(round) {
+
+            const roundMatches =
+                matches
+                    .filter(
+                        function(match) {
+
+                            return (
+                                String(match.Round) ===
+                                String(round)
+                            );
+
+                        }
+                    )
+                    .sort(
+                        function(a, b) {
+
+                            const aNumber =
+                                Number(
+                                    a.MatchNumber
+                                );
+
+
+                            const bNumber =
+                                Number(
+                                    b.MatchNumber
+                                );
+
+
+                            if (
+                                Number.isFinite(
+                                    aNumber
+                                ) &&
+                                Number.isFinite(
+                                    bNumber
+                                )
+                            ) {
+
+                                return (
+                                    aNumber -
+                                    bNumber
+                                );
+
+                            }
+
+
+                            return 0;
+
+                        }
+                    );
+
+
+            roundsContainer.appendChild(
+
+                createRound(
+                    round,
+                    roundMatches
+                )
+
+            );
+
+        }
+    );
+
+
+    section.appendChild(
+        roundsContainer
+    );
+
+
+    return section;
+
+}
+
+
+
+// ==========================================
+// CREATE ROUND
+// ==========================================
+
+function createRound(
+    round,
+    matches
+) {
+
+    const roundElement =
+        document.createElement(
+            "div"
+        );
+
+
+    roundElement.className =
+        "bracket-round";
+
+
+    roundElement.style.position =
+        "relative";
+
+
+    // ------------------------------------------
+    // TITLE
+    // ------------------------------------------
+
+    const title =
+        document.createElement(
+            "h3"
+        );
+
+
+    const roundNames = {
+
+        1: "ROUND 1",
+
+        2: "ROUND 2",
+
+        3: "SEMIFINALS",
+
+        4: "FINAL"
+
+    };
+
+
+    title.textContent =
+        roundNames[
+            Number(round)
+        ] ||
+        `ROUND ${round}`;
+
+
+    roundElement.appendChild(
+        title
+    );
+
+
+    // ------------------------------------------
+    // MATCH CONTAINER
+    // ------------------------------------------
+
+    const container =
+        document.createElement(
+            "div"
+        );
+
+
+    container.className =
+        "bracket-round-matches";
+
+
+    container.style.position =
+        "relative";
+
+
+    matches.forEach(
+        function(match) {
+
+            container.appendChild(
+
+                createMatch(
+                    match
+                )
+
+            );
+
+        }
+    );
+
+
+    roundElement.appendChild(
+        container
+    );
+
+
+    return roundElement;
+
+}
+
+
+
+// ==========================================
+// CREATE MATCH
+// ==========================================
+
+function createMatch(
+    match
+) {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "bracket-match";
+
+
+    card.dataset.matchId =
+        match.MatchID;
+
+
+    // ------------------------------------------
+    // STATUS
+    // ------------------------------------------
+
+    const status =
+        match.Status ||
+        "Upcoming";
+
+
+    const statusLower =
+        status.toLowerCase();
+
+
+    if (
+        statusLower ===
+        "complete"
+    ) {
+
+        card.classList.add(
+            "match-complete"
+        );
+
+    }
+
+    else if (
+        statusLower ===
+        "live"
+    ) {
+
+        card.classList.add(
+            "match-live"
+        );
+
+    }
+
+    else {
+
+        card.classList.add(
+            "match-upcoming"
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // MATCH HEADER
+    // ------------------------------------------
+
+    const header =
+        document.createElement(
+            "div"
+        );
+
+
+    header.className =
+        "match-info";
+
+
+    const idElement =
+        document.createElement(
+            "span"
+        );
+
+
+    idElement.textContent =
+        `Match ${match.MatchID}`;
+
+
+    const statusElement =
+        document.createElement(
+            "span"
+        );
+
+
+    statusElement.textContent =
+        status;
+
+
+    header.appendChild(
+        idElement
+    );
+
+
+    header.appendChild(
+        statusElement
+    );
+
+
+    card.appendChild(
+        header
+    );
+
+
+    // ------------------------------------------
+    // TEAM 1
+    // ------------------------------------------
+
+    card.appendChild(
+
+        createTeamElement(
+
+            match.Team1 ||
+            "TBD",
+
+            match.Score1,
+
+            (
+                match.Winner !== "" &&
+                match.Winner === match.Team1
+            )
+
+        )
+
+    );
+
+
+    // ------------------------------------------
+    // DIVIDER
+    // ------------------------------------------
+
+    const divider =
+        document.createElement(
+            "div"
+        );
+
+
+    divider.className =
+        "bracket-divider";
+
+
+    card.appendChild(
+        divider
+    );
+
+
+    // ------------------------------------------
+    // TEAM 2
+    // ------------------------------------------
+
+    card.appendChild(
+
+        createTeamElement(
+
+            match.Team2 ||
+            "TBD",
+
+            match.Score2,
+
+            (
+                match.Winner !== "" &&
+                match.Winner === match.Team2
+            )
+
+        )
+
+    );
+
+
+    return card;
+
+}
+
+
+
+// ==========================================
+// CREATE TEAM ROW
+// ==========================================
+
+function createTeamElement(
+    team,
+    score,
+    isWinner
+) {
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "bracket-team";
+
+
+    if (
+        isWinner
+    ) {
+
+        row.classList.add(
+            "winner"
+        );
+
+    }
+
+
+    const name =
+        document.createElement(
+            "span"
+        );
+
+
+    name.textContent =
+        team;
+
+
+    const scoreElement =
+        document.createElement(
+            "strong"
+        );
+
+
+    scoreElement.textContent =
+        score !== ""
+            ? score
+            : "—";
+
+
+    row.appendChild(
+        name
+    );
+
+
+    row.appendChild(
+        scoreElement
+    );
+
+
+    return row;
+
+}
+
+
+
+// ==========================================
+// GET CARD
+// ==========================================
+
+function getCard(
+    matchID
+) {
+
+    const target =
+        normalizeText(
+            matchID
+        );
+
+
+    const cards =
+        bracketContainer.querySelectorAll(
+            ".bracket-match"
+        );
+
+
+    for (
+        let i = 0;
+        i < cards.length;
+        i++
+    ) {
+
+        if (
+            normalizeText(
+                cards[i].dataset.matchId
+            ) ===
+            target
+        ) {
+
+            return cards[i];
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+// ==========================================
+// FIND INCOMING MATCHES
+// ==========================================
+//
+// This determines where a later-round match
+// should sit based on the spreadsheet.
+//
+// It checks both:
+//
+// Next Match ID
+// Loser Next Match ID
+//
+// It does NOT assume match order.
+// ==========================================
+
+function findIncomingMatches(
+    targetMatch
+) {
+
+    const target =
+        normalizeText(
+            targetMatch.MatchID
+        );
+
+
+    return currentBracketMatches.filter(
+        function(source) {
+
+            return (
+
+                normalizeText(
+                    source.NextMatchID
+                ) ===
+                target ||
+
+                normalizeText(
+                    source.LoserNextMatchID
+                ) ===
+                target
+
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// RESET POSITIONING
+// ==========================================
+
+function resetBracketLayout() {
+
+    removeOldBracketGraphics();
+
+
+    bracketContainer
+        .querySelectorAll(
+            ".bracket-round-matches"
+        )
+        .forEach(
+            function(container) {
+
+                container.style.height =
+                    "";
+
+
+                container
+                    .querySelectorAll(
+                        ".bracket-match"
+                    )
+                    .forEach(
+                        function(card) {
+
+                            card.style.position =
+                                "";
+
+                            card.style.top =
+                                "";
+
+                            card.style.left =
+                                "";
+
+                            card.style.width =
+                                "";
+
+                        }
+                    );
+
+            }
+        );
+
+}
+
+
+
+// ==========================================
+// LAYOUT ENTIRE BRACKET
+// ==========================================
+
+function layoutBrackets() {
+
+    resetBracketLayout();
+
+
+    requestAnimationFrame(
+        function() {
+
+            // --------------------------------------
+            // POSITION WINNERS
+            // --------------------------------------
+
+            positionBracket(
+                "winners"
+            );
+
+
+            requestAnimationFrame(
+                function() {
+
+                    // ----------------------------------
+                    // POSITION LOSERS
+                    // ----------------------------------
+
+                    positionBracket(
+                        "losers"
+                    );
+
+
+                    requestAnimationFrame(
+                        function() {
+
+                            requestAnimationFrame(
+                                function() {
+
+                                    drawLocalBracketLines(
+                                        "winners"
+                                    );
+
+
+                                    drawLocalBracketLines(
+                                        "losers"
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// POSITION ONE BRACKET
+// ==========================================
+
+function positionBracket(
+    bracketType
+) {
+
+    const section =
+        bracketContainer.querySelector(
+            `.bracket-group[data-bracket="${bracketType}"]`
+        );
+
+
+    if (
+        !section
+    ) {
+
+        return;
+
+    }
+
+
+    const rounds =
+        Array.from(
+            section.querySelectorAll(
+                ".bracket-round"
+            )
+        );
+
+
+    if (
+        rounds.length < 2
+    ) {
+
+        return;
+
+    }
+
+
+    // ------------------------------------------
+    // PROCESS EACH ROUND AFTER ROUND 1
+    // ------------------------------------------
+
+    for (
+        let i = 1;
+        i < rounds.length;
+        i++
+    ) {
+
+        const round =
+            rounds[i];
+
+
+        const container =
+            round.querySelector(
+                ".bracket-round-matches"
+            );
+
+
+        if (
+            !container
+        ) {
+
+            continue;
+
+        }
+
+
+        const cards =
+            Array.from(
+                container.querySelectorAll(
+                    ".bracket-match"
+                )
+            );
+
+
+        let maxBottom =
+            0;
+
+
+        cards.forEach(
+            function(card) {
+
+                const match =
+                    findMatchByReference(
+                        card.dataset.matchId
+                    );
+
+
+                if (
+                    !match
+                ) {
+
+                    return;
+
+                }
+
+
+                const incoming =
+                    findIncomingMatches(
+                        match
+                    );
+
+
+                // ----------------------------------
+                // IMPORTANT:
+                // Only use incoming matches from
+                // THIS bracket for vertical
+                // positioning.
+                //
+                // Cross-bracket loser routing does
+                // not change where the card sits.
+                // ----------------------------------
+
+                const localIncoming =
+                    incoming.filter(
+                        function(source) {
+
+                            return (
+                                normalizeText(
+                                    source.Bracket
+                                ) ===
+                                bracketType
+                            );
+
+                        }
+                    );
+
+
+                if (
+                    !localIncoming.length
+                ) {
+
+                    return;
+
+                }
+
+
+                const sourceCards =
+                    localIncoming
+                        .map(
+                            function(source) {
+
+                                return getCard(
+                                    source.MatchID
+                                );
+
+                            }
+                        )
+                        .filter(
+                            Boolean
+                        );
+
+
+                if (
+                    !sourceCards.length
+                ) {
+
+                    return;
+
+                }
+
+
+                // ----------------------------------
+                // SOURCE CENTERS
+                // ----------------------------------
+
+                const centers =
+                    sourceCards.map(
+                        function(sourceCard) {
+
+                            const rect =
+                                sourceCard
+                                    .getBoundingClientRect();
+
+
+                            return (
+                                rect.top +
+                                rect.height / 2
+                            );
+
+                        }
+                    );
+
+
+                const targetCenter =
+                    centers.reduce(
+                        function(
+                            total,
+                            value
+                        ) {
+
+                            return (
+                                total +
+                                value
+                            );
+
+                        },
+                        0
+                    ) /
+                    centers.length;
+
+
+                // ----------------------------------
+                // TARGET CONTAINER
+                // ----------------------------------
+
+                const containerRect =
+                    container.getBoundingClientRect();
+
+
+                const cardHeight =
+                    card.getBoundingClientRect()
+                        .height;
+
+
+                const top =
+                    targetCenter -
+                    containerRect.top -
+                    cardHeight / 2;
+
+
+                card.style.position =
+                    "absolute";
+
+
+                card.style.top =
+                    `${Math.max(
+                        0,
+                        top
+                    )}px`;
+
+
+                card.style.left =
+                    "0";
+
+
+                card.style.width =
+                    "100%";
+
+
+                maxBottom =
+                    Math.max(
+                        maxBottom,
+                        Math.max(
+                            0,
+                            top
+                        ) +
+                        cardHeight
+                    );
+
+            }
+        );
+
+
+        if (
+            maxBottom > 0
+        ) {
+
+            container.style.height =
+                `${maxBottom}px`;
+
+        }
+
+    }
+
+}
+
+
+
+// ==========================================
+// CREATE LOCAL SVG
+// ==========================================
+
+function createLocalSVG(
+    roundsContainer
+) {
+
+    const svg =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
+
+
+    svg.classList.add(
+        "sc-bracket-local-lines"
+    );
+
+
+    const width =
+        roundsContainer.scrollWidth;
+
+
+    const height =
+        roundsContainer.scrollHeight;
+
+
+    svg.setAttribute(
+        "width",
+        width
+    );
+
+
+    svg.setAttribute(
+        "height",
+        height
+    );
+
+
+    svg.setAttribute(
+        "viewBox",
+        `0 0 ${width} ${height}`
+    );
+
+
+    svg.style.position =
+        "absolute";
+
+
+    svg.style.left =
+        "0";
+
+
+    svg.style.top =
+        "0";
+
+
+    svg.style.width =
+        `${width}px`;
+
+
+    svg.style.height =
+        `${height}px`;
+
+
+    svg.style.display =
+        "block";
+
+
+    svg.style.pointerEvents =
+        "none";
+
+
+    svg.style.overflow =
+        "visible";
+
+
+    svg.style.zIndex =
+        "0";
+
+
+    roundsContainer.insertBefore(
+        svg,
+        roundsContainer.firstChild
+    );
+
+
+    return svg;
+
+}
+
+
+
+// ==========================================
+// DRAW LOCAL BRACKET LINES
+// ==========================================
+//
+// Only draws:
+//
+// Winners → Winners
+// Losers → Losers
+//
+// It deliberately does NOT draw:
+//
+// Winners → Losers
+//
+// This keeps the two bracket sections
+// visually separate.
+// ==========================================
+
+function drawLocalBracketLines(
+    bracketType
+) {
+
+    const section =
+        bracketContainer.querySelector(
+            `.bracket-group[data-bracket="${bracketType}"]`
+        );
+
+
+    if (
+        !section
+    ) {
+
+        return;
+
+    }
+
+
+    const roundsContainer =
+        section.querySelector(
+            ".bracket-rounds"
+        );
+
+
+    if (
+        !roundsContainer
+    ) {
+
+        return;
+
+    }
+
+
+    roundsContainer.style.position =
+        "relative";
+
+
+    roundsContainer.style.overflow =
+        "visible";
+
+
+    const svg =
+        createLocalSVG(
+            roundsContainer
+        );
+
+
+    const containerRect =
+        roundsContainer.getBoundingClientRect();
+
+
+    // ------------------------------------------
+    // Look at each SOURCE match.
+    // ------------------------------------------
+
+    currentBracketMatches.forEach(
+        function(source) {
+
+            // Only source matches in this bracket.
+
+            if (
+                normalizeText(
+                    source.Bracket
+                ) !==
+                bracketType
+            ) {
+
+                return;
+
+            }
+
+
+            // --------------------------------------
+            // WINNER ROUTE
+            // --------------------------------------
+
+            if (
+                source.NextMatchID
+            ) {
+
+                const target =
+                    findMatchByReference(
+                        source.NextMatchID
+                    );
+
+
+                if (
+                    target &&
+                    normalizeText(
+                        target.Bracket
+                    ) ===
+                    bracketType
+                ) {
+
+                    drawLocalConnectionBetweenMatches(
+                        svg,
+                        source,
+                        target,
+                        containerRect
+                    );
+
+                }
+
+            }
+
+
+            // --------------------------------------
+            // LOSER ROUTE
+            //
+            // IMPORTANT:
+            //
+            // We ONLY draw this if the loser stays
+            // inside the SAME bracket.
+            //
+            // Winners losers going to Losers
+            // are intentionally NOT drawn.
+            // --------------------------------------
+
+            if (
+                source.LoserNextMatchID
+            ) {
+
+                const target =
+                    findMatchByReference(
+                        source.LoserNextMatchID
+                    );
+
+
+                if (
+                    target &&
+                    normalizeText(
+                        target.Bracket
+                    ) ===
+                    bracketType
+                ) {
+
+                    drawLocalConnectionBetweenMatches(
+                        svg,
+                        source,
+                        target,
+                        containerRect
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// DRAW CONNECTION BETWEEN TWO MATCHES
+// ==========================================
+
+function drawLocalConnectionBetweenMatches(
+    svg,
+    sourceMatch,
+    targetMatch,
+    containerRect
+) {
+
+    const sourceCard =
+        getCard(
+            sourceMatch.MatchID
+        );
+
+
+    const targetCard =
+        getCard(
+            targetMatch.MatchID
+        );
+
+
+    if (
+        !sourceCard ||
+        !targetCard
+    ) {
+
+        return;
+
+    }
+
+
+    const source =
+        getPosition(
+            sourceCard,
+            containerRect
+        );
+
+
+    const target =
+        getPosition(
+            targetCard,
+            containerRect
+        );
+
+
+    // ------------------------------------------
+    // Safety check.
+    // ------------------------------------------
+
+    if (
+        target.left <=
+        source.right
+    ) {
+
+        return;
+
+    }
+
+
+    const gap =
+        target.left -
+        source.right;
+
+
+    const midpoint =
+        source.right +
+        Math.max(
+            20,
+            gap / 2
+        );
+
+
+    appendPath(
+
+        svg,
+
+        `M ${source.right}
+         ${source.centerY}
+         H ${midpoint}
+         V ${target.centerY}
+         H ${target.left}`
+
+    );
+
+}
+
+
+
+// ==========================================
+// GET LOCAL POSITION
+// ==========================================
+
+function getPosition(
+    element,
+    containerRect
+) {
+
+    const rect =
+        element.getBoundingClientRect();
+
+
+    return {
+
+        left:
+            rect.left -
+            containerRect.left,
+
+        right:
+            rect.right -
+            containerRect.left,
+
+        centerY:
+            rect.top -
+            containerRect.top +
+            rect.height / 2
+
+    };
+
+}
+
+
+
+// ==========================================
+// APPEND SVG PATH
+// ==========================================
+
+function appendPath(
+    svg,
+    pathData
+) {
+
+    const path =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+        );
+
+
+    path.setAttribute(
+        "d",
+        pathData
+    );
+
+
+    path.setAttribute(
+        "fill",
+        "none"
+    );
+
+
+    path.setAttribute(
+        "stroke",
+        "rgba(0, 0, 0, 0.30)"
+    );
+
+
+    path.setAttribute(
+        "stroke-width",
+        "1.5"
+    );
+
+
+    path.setAttribute(
+        "stroke-linecap",
+        "square"
+    );
+
+
+    path.setAttribute(
+        "stroke-linejoin",
+        "miter"
+    );
+
+
+    path.setAttribute(
+        "vector-effect",
+        "non-scaling-stroke"
+    );
+
+
+    svg.appendChild(
+        path
+    );
+
+}
+
+
+
+// ==========================================
+// INITIAL LOAD
+// ==========================================
+
+loadBracket();
+
+
+
+// ==========================================
+// AUTO REFRESH
+// ==========================================
+
+setInterval(
+    function() {
+
+        loadBracket();
+
+    },
+    30000
+);
+
+
+
+// ==========================================
+// WINDOW RESIZE
+// ==========================================
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (
+            !currentBracketMatches.length
+        ) {
+
+            return;
+
+        }
+
+
+        requestAnimationFrame(
+            function() {
+
+                layoutBrackets();
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,2245 @@
+
+/* ==========================================
+   SPAWN CAMP NAV HOVER
+========================================== */
+
+nav a:hover {
+    color: var(--orange);
+}
+
+.sc-orange {
+    color: var(--orange);
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   SPAWN CAMP HERO
+========================================== */
+
+.sc-hero {
+    position: relative;
+
+    width: min(2000px, calc(100% - 60px));
+    height: 550px;
+
+    margin: 30px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    box-shadow: 0 12px 35px rgba(39,39,39,0.15);
+
+    background-color: var(--gray);
+}
+
+.sc-hero img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(1.15);
+}
+
+.sc-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(39,39,39,0.82),
+        rgba(39,39,39,0.25)
+    );
+}
+
+.sc-hero-content {
+    position: absolute;
+
+    top: 50%;
+    left: 50px;
+
+    transform: translateY(-50%);
+
+    max-width: 500px;
+
+    color: white;
+
+    z-index: 2;
+}
+
+.sc-hero h1 {
+    margin: 10px 0;
+
+    color: var(--white);
+
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1;
+
+    letter-spacing: 6px;
+    font-weight: 800;
+
+    text-shadow: 0 4px 15px rgba(0,0,0,0.35);
+}
+
+.sc-hero p {
+    max-width: 450px;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.sc-section-line {
+    display: block;
+
+    width: 100px;
+    height: 3px;
+
+    background-color: var(--orange);
+
+    margin: 25px 0 30px;
+
+    box-shadow: 0 0 10px rgba(231, 143, 12, 0.4);
+}
+
+
+/* ==========================================
+   ORANGE BUTTON
+========================================== */
+
+.sc-button {
+    display: inline-block;
+
+    padding: 11px 22px;
+
+    background: var(--orange);
+    color: var(--white);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sc-button:hover {
+    background-color: var(--gray);
+    border-color: var(--gray);
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   INTRO SECTION
+========================================== */
+
+.intro-section {
+    width: min(1200px, calc(100% - 60px));
+    margin: 0 auto;
+
+    padding: 100px 0;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+
+    align-items: center;
+}
+
+.intro-image img {
+    width: 100%;
+    height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(39,39,39,0.12);
+}
+
+.intro-content h2 {
+    color: var(--gray);
+
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    margin-bottom: 25px;
+}
+
+.intro-content::before {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 3px;
+
+    background-color: var(--orange);
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   SERVICES SECTION
+========================================== */
+
+.services-section {
+    padding: 60px 30px;
+}
+
+.services-inner {
+    width: min(1400px, 100%);
+    margin: 0 auto;
+
+    background-color: var(--gray);
+
+    padding: 50px 60px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 12px 35px rgba(39,39,39,0.15);
+}
+
+.services-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.services-heading h2 {
+    max-width: 400px;
+
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--white);
+    font-weight: 500;
+}
+
+.services-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.services-title h2 {
+    margin: 0;
+
+    color: var(--white);
+
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1;
+
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.services-title p {
+    margin: 10px 0 0;
+
+    color: var(--orange);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.services-title .section-line {
+    width: 45px;
+    height: 3px;
+
+    background-color: var(--orange);
+
+    margin: 0 0 15px;
+}
+
+.services-layout {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 35px;
+}
+
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.service-tab {
+    width: 180px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: transparent;
+    color: var(--white);
+
+    padding: 14px 15px;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.service-tab.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--white);
+}
+
+.service-tab:hover {
+    background-color: rgba(231, 143, 12, 0.035);
+    border-color: var(--orange);
+
+    transform: translateX(3px);
+}
+
+
+/* ==========================================
+   SERVICE CARD
+========================================== */
+
+.service-card {
+    background-color: var(--white);
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.service-card img {
+    width: 100%;
+
+    aspect-ratio: 16/9;
+
+    object-fit: cover;
+    object-position: 50% 75%;
+
+    border-radius: 6px;
+}
+
+.service-card h3 {
+    color: var(--gray);
+
+    font-size: 28px;
+
+    margin: 25px 15px 10px;
+}
+
+.service-card p {
+    color: #666;
+
+    margin: 0 15px 20px;
+
+    max-width: 650px;
+}
+
+.service-card .button {
+    margin: 0 15px 15px;
+}
+
+
+/* ==========================================
+   SERVICE CARD TRANSITION
+========================================== */
+
+.service-card img,
+.service-card-content {
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.service-card.is-changing img,
+.service-card.is-changing .service-card-content {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+
+/* ==========================================
+   SERVICE META
+========================================== */
+
+.service-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+
+    margin: 20px 15px 25px;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: var(--orange);
+}
+
+.service-meta span {
+    display: inline-block;
+}
+
+
+/* ==========================================
+   SPAWN CAMP BRACKET / STATS PAGE HEADER
+========================================== */
+
+.sc-page-header {
+    max-width: 1200px;
+
+    margin: 45px auto 0;
+
+    padding: 35px 40px 32px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(39,39,39,0.04),
+            rgba(231, 143, 12, 0.04)
+        );
+
+    border: 1px solid rgba(39,39,39,0.08);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(39,39,39,0.07);
+
+    overflow: hidden;
+}
+
+.sc-page-header::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background-color: var(--orange);
+}
+
+.sc-page-header .section-line {
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    background-color: var(--orange);
+
+    margin-bottom: 18px;
+
+    box-shadow: 0 0 10px rgba(231, 162, 12, 0.35);
+}
+
+.sc-page-header h1 {
+    margin: 0 0 6px;
+
+    font-size: 48px;
+    line-height: 1;
+
+    letter-spacing: 6px;
+    font-weight: 800;
+
+    color: var(--gray);
+}
+
+.sc-page-header p {
+    margin: 0;
+
+    font-size: 16px;
+
+    letter-spacing: 3px;
+
+    color: var(--orange);
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   SPAWN CAMP BRACKET PAGE
+========================================== */
+
+.bracket-section {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 40px 100px;
+}
+
+.bracket-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 45px;
+}
+
+.bracket-header h2 {
+    margin: 0 0 8px;
+
+    font-size: 36px;
+    line-height: 1.1;
+
+    font-weight: 500;
+}
+
+#bracket-status {
+    margin: 0;
+
+    font-size: 14px;
+
+    opacity: 0.65;
+}
+
+
+/* ==========================================
+   BRACKET CONTAINER
+========================================== */
+
+.bracket-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 70px;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    padding: 20px 20px 40px;
+
+    scrollbar-width: thin;
+}
+
+
+/* ==========================================
+   DOUBLE ELIMINATION BRACKET GROUP
+========================================== */
+
+.bracket-group {
+    position: relative;
+
+    width: max-content;
+    min-width: 100%;
+
+    margin: 0;
+}
+
+.bracket-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================
+   BRACKET GROUP TITLE
+========================================== */
+
+.bracket-group-title {
+    margin: 0 0 30px;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: var(--gray);
+}
+
+.bracket-group-title::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 35px;
+    height: 3px;
+
+    margin-right: 12px;
+
+    vertical-align: middle;
+
+    background-color: var(--orange);
+}
+
+
+/* ==========================================
+   BRACKET ROUNDS
+========================================== */
+
+.bracket-rounds {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 70px;
+
+    width: max-content;
+}
+
+
+/* ==========================================
+   ROUND
+========================================== */
+
+.bracket-round {
+    position: relative;
+
+    flex: 0 0 260px;
+
+    z-index: 1;
+}
+
+.bracket-round h3 {
+    margin: 0 0 25px;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    color: var(--gray);
+}
+
+
+/* ==========================================
+   ROUND MATCH CONTAINER
+========================================== */
+
+.bracket-round-matches {
+    position: relative;
+}
+
+
+/* ==========================================
+   MATCH
+========================================== */
+
+.bracket-match {
+    position: relative;
+
+    background: var(--white);
+
+    margin-bottom: 30px;
+
+    padding: 0;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.05);
+
+    overflow: visible;
+
+    z-index: 2;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.bracket-match:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ==========================================
+   MATCH HEADER
+========================================== */
+
+.match-info {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 14px;
+
+    background: var(--gray);
+
+    color: var(--white);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+.match-info span:last-child {
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   TEAMS
+========================================== */
+
+.bracket-team {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 45px;
+
+    padding: 10px 14px;
+
+    font-size: 15px;
+
+    font-weight: 400;
+
+    transition:
+        background-color 0.2s ease;
+}
+
+.bracket-team > span {
+    font-weight: 400;
+}
+
+.bracket-team.winner {
+    font-weight: 700;
+
+    background: rgba(0,0,0,0.025);
+}
+
+.bracket-team.winner > span {
+    font-weight: 700;
+}
+
+.bracket-team strong {
+    min-width: 25px;
+
+    text-align: right;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.bracket-divider {
+    height: 1px;
+
+    margin: 0 14px;
+
+    background: rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================
+   COMPLETED MATCH
+========================================== */
+
+.match-complete {
+    border-left: 4px solid var(--orange);
+}
+
+.match-complete .match-info span:last-child {
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   LIVE MATCH
+========================================== */
+
+.match-live {
+    border-left: 4px solid var(--orange);
+}
+
+.match-live .match-info span:last-child {
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   UPCOMING MATCH
+========================================== */
+
+.match-upcoming {
+    opacity: 0.85;
+}
+
+.match-upcoming .match-info span:last-child {
+    opacity: 0.65;
+}
+
+
+/* ==========================================
+   BRACKET CONNECTIONS
+========================================== */
+
+.bracket-connections {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 0;
+
+    display: block;
+
+    pointer-events: none;
+
+    overflow: visible;
+
+    width: 100%;
+    height: 100%;
+}
+
+.bracket-connection {
+    fill: none;
+
+    stroke: rgba(0, 0, 0, 0.22);
+
+    stroke-width: 2;
+
+    vector-effect: non-scaling-stroke;
+
+    stroke-linecap: square;
+
+    stroke-linejoin: miter;
+}
+
+
+/* ==========================================
+   BRACKET MATCH LAYERING
+========================================== */
+
+.bracket-round {
+    position: relative;
+
+    z-index: 1;
+}
+
+.bracket-round-matches {
+    position: relative;
+
+    z-index: 1;
+}
+
+.bracket-match {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ==========================================
+   BRACKET EMPTY / ERROR
+========================================== */
+
+.bracket-empty,
+.bracket-error {
+    width: 100%;
+
+    padding: 60px 30px;
+
+    background: var(--gray);
+
+    color: var(--white);
+
+    text-align: center;
+}
+
+.bracket-empty h3,
+.bracket-error h3 {
+    margin: 0 0 10px;
+
+    color: var(--white);
+
+    font-size: 28px;
+}
+
+.bracket-empty p,
+.bracket-error p {
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    line-height: 1.6;
+}
+
+.bracket-empty span {
+    display: block;
+
+    width: 45px;
+    height: 3px;
+
+    background-color: var(--orange);
+
+    margin-bottom: 18px;
+}
+
+
+/* ==========================================
+   SPAWN CAMP STATS PAGE
+========================================== */
+
+.stats-section {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 40px 100px;
+}
+
+
+/* ==========================================
+   STATS HEADER
+========================================== */
+
+.stats-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 35px;
+}
+
+.stats-header h2 {
+    margin: 0 0 8px;
+
+    color: var(--gray);
+
+    font-size: 36px;
+    line-height: 1.1;
+
+    font-weight: 500;
+}
+
+.stats-header p {
+    margin: 0 0 8px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+#stats-status {
+    margin: 0;
+
+    font-size: 14px;
+
+    opacity: 0.65;
+}
+
+
+/* ==========================================
+   TOURNAMENT SUMMARY
+========================================== */
+
+.stats-summary {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 45px;
+}
+
+.stats-summary-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-height: 105px;
+
+    padding: 20px 22px;
+
+    background: var(--gray);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stats-summary-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background: var(--orange);
+}
+
+.stats-summary-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.stats-summary-card strong {
+    color: var(--white);
+
+    font-size: 34px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================
+   STATS PANEL
+========================================== */
+
+.stats-panel {
+    margin-bottom: 45px;
+
+    background: var(--white);
+
+    border: 1px solid rgba(39,39,39,0.07);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.07);
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   STATS PANEL HEADER
+========================================== */
+
+.stats-panel-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 25px 25px 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.stats-panel-header h2 {
+    margin: 0 0 6px;
+
+    color: var(--gray);
+
+    font-size: 24px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+.stats-panel-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   FILTERS
+========================================== */
+
+.stats-filters {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-bottom: 45px;
+
+    padding: 20px;
+
+    background: var(--gray);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stats-filter {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.stats-filter label {
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: var(--orange);
+}
+
+.stats-filter select {
+    min-width: 180px;
+
+    padding: 11px 35px 11px 12px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    border-radius: 4px;
+
+    background-color: var(--white);
+
+    color: var(--gray);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+.stats-filter select:focus {
+    border-color: var(--orange);
+}
+
+
+/* ==========================================
+   FILTER RESET BUTTON
+========================================== */
+
+.stats-filter-reset {
+    align-self: flex-end;
+
+    min-height: 40px;
+
+    padding: 11px 18px;
+
+    border: 1px solid var(--orange);
+
+    border-radius: 4px;
+
+    background-color: var(--orange);
+
+    color: var(--white);
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.stats-filter-reset:hover {
+    background-color: var(--gray);
+
+    border-color: var(--gray);
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   FILTER ACTIVE STATE
+========================================== */
+
+.stats-filter select.filter-active {
+    border-color: var(--orange);
+
+    box-shadow:
+        0 0 0 2px rgba(231, 136, 12, 0.12);
+}
+
+
+/* ==========================================
+   TABLE WRAPPER
+========================================== */
+
+.stats-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* ==========================================
+   STATS TABLE
+========================================== */
+
+.stats-table {
+    width: 100%;
+
+    min-width: 760px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+.stats-table thead {
+    background: var(--gray);
+
+    color: var(--white);
+}
+
+.stats-table th {
+    padding: 13px 15px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.stats-table th:first-child {
+    width: 45px;
+
+    text-align: center;
+}
+
+
+/*
+   PLAYER TABLE:
+   # | PLAYER | TEAM | K | D | A | KDA | SCORE
+*/
+
+.stats-table th:nth-child(n+4) {
+    text-align: right;
+}
+
+
+/* ==========================================
+   TABLE ROWS
+========================================== */
+
+.stats-table tbody tr {
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        background-color 0.15s ease;
+}
+
+.stats-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.stats-table tbody tr:hover {
+    background-color: rgba(231, 143, 12, 0.035);
+}
+
+.stats-table td {
+    padding: 15px;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   RANK
+========================================== */
+
+.stats-table td:first-child {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    width: 45px;
+}
+
+
+/* ==========================================
+   PLAYER / TEAM NAME
+========================================== */
+
+.stats-table .stats-player {
+    color: var(--gray);
+
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   NUMERIC STATS
+========================================== */
+
+.stats-table .stat-number {
+    text-align: right;
+
+    font-variant-numeric: tabular-nums;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   KDA
+========================================== */
+
+.stats-table .stat-kda {
+    text-align: right;
+
+    color: var(--gray);
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================
+   PLAYER SCORE
+========================================== */
+
+.stats-table td:nth-child(8) {
+    text-align: right;
+
+    color: var(--orange);
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================
+   HIGHLIGHT 1ST ROW PLAYER STATS
+========================================== */
+
+.stats-table tbody tr:first-child {
+    background-color: rgba(231, 143, 12, 0.035);
+}
+
+.stats-table tbody tr:first-child td:first-child {
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   EMPTY / LOADING / ERROR
+========================================== */
+
+.stats-loading,
+.stats-empty-row,
+.stats-error {
+    padding: 40px 20px !important;
+
+    text-align: center !important;
+
+    color: #777;
+
+    font-size: 13px !important;
+}
+
+.stats-error {
+    color: #b33;
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.stats-empty {
+    padding: 60px 30px;
+
+    background: var(--gray);
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: var(--white);
+}
+
+.stats-empty h3 {
+    margin: 0 0 10px;
+
+    font-size: 28px;
+}
+
+.stats-empty p {
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    line-height: 1.6;
+
+    opacity: 0.75;
+}
+
+
+/* ==========================================
+   GAME BREAKDOWN
+========================================== */
+
+.game-breakdown {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding: 25px;
+}
+
+
+/* ==========================================
+   GAME STAT CARD
+========================================== */
+
+.game-stat-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(39,39,39,0.035),
+            rgba(231, 143, 12, 0.035)
+        );
+
+    border: 1px solid rgba(39,39,39,0.08);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.game-stat-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(231, 136, 12, 0.12);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.07);
+}
+
+
+/* ==========================================
+   GAME CARD HEADER
+========================================== */
+
+.game-stat-card-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+
+    background: var(--gray);
+
+    color: var(--white);
+}
+
+.game-stat-card-header h3 {
+    margin: 0;
+
+    color: var(--white);
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.game-stat-card-header span {
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================
+   GAME CARD VALUES
+========================================== */
+
+.game-stat-values {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 20px;
+}
+
+.game-stat-values > div {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-right: 1px solid var(--border);
+}
+
+.game-stat-values > div:last-child {
+    border-right: none;
+}
+
+.game-stat-values strong {
+    color: var(--gray);
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+.game-stat-values span {
+    margin-top: 7px;
+
+    color: #888;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.game-stat-values > div:last-child strong {
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   TEAM LEADERBOARD
+========================================== */
+
+/*
+   Team leaderboard columns:
+
+   # | TEAM | MATCHES | K | D | A | KDA | SCORE
+
+   The team leaderboard intentionally uses the
+   same visual language as the player leaderboard,
+   while giving the TEAM column more room.
+*/
+
+.team-stats-table {
+    width: 100%;
+
+    min-width: 760px;
+}
+
+
+/* ==========================================
+   TEAM TABLE ALIGNMENT
+========================================== */
+
+/*
+   Team table numeric columns begin at column 3:
+
+   MATCHES = 3
+   K       = 4
+   D       = 5
+   A       = 6
+   KDA     = 7
+   SCORE   = 8
+*/
+
+.team-stats-table th:nth-child(n+3) {
+    text-align: right;
+}
+
+.team-stats-table td:nth-child(n+3) {
+    text-align: right;
+}
+
+
+/* ==========================================
+   TEAM NAME
+========================================== */
+
+.team-stats-table .stats-player {
+    color: var(--gray);
+
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   TEAM MATCH COUNT
+========================================== */
+
+.team-stats-table td:nth-child(3) {
+    font-variant-numeric: tabular-nums;
+
+    font-weight: 600;
+
+    color: var(--gray);
+}
+
+
+/* ==========================================
+   TEAM K / D / A
+========================================== */
+
+.team-stats-table td:nth-child(4),
+.team-stats-table td:nth-child(5),
+.team-stats-table td:nth-child(6) {
+    font-variant-numeric: tabular-nums;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   TEAM KDA
+========================================== */
+
+.team-stats-table td:nth-child(7) {
+    text-align: right;
+
+    color: var(--gray);
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================
+   TEAM SCORE
+========================================== */
+
+.team-stats-table td:nth-child(8) {
+    text-align: right;
+
+    color: var(--orange);
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================
+   TEAM TABLE HEADER EMPHASIS
+========================================== */
+
+.team-stats-table thead th:first-child {
+    width: 45px;
+}
+
+.team-stats-table thead th:nth-child(2) {
+    min-width: 220px;
+
+    text-align: left;
+}
+
+
+/* ==========================================
+   TEAM TABLE ROW HIGHLIGHT
+========================================== */
+
+.team-stats-table tbody tr:first-child {
+    background-color: rgba(231, 143, 12, 0.035);
+}
+
+.team-stats-table tbody tr:first-child td:first-child {
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   TEAM TABLE HOVER
+========================================== */
+
+.team-stats-table tbody tr:hover {
+    background-color: rgba(231, 143, 12, 0.035);
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.sc-footer {
+    background-color: var(--gray);
+
+    color: var(--white);
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    border-top: 3px solid var(--orange);
+}
+
+
+/* ==========================================
+   SORTABLE TABLE HEADERS
+========================================== */
+
+.stats-table th.sortable-header {
+    cursor: pointer;
+    user-select: none;
+
+    background: var(--gray);
+    color: var(--white);
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+
+/* ------------------------------------------
+   HOVER
+------------------------------------------ */
+
+.stats-table th.sortable-header:hover {
+    background-color: #303030;
+}
+
+
+/* ------------------------------------------
+   ACTIVE SORT COLUMN
+------------------------------------------ */
+
+.stats-table th.sortable-header.sort-active {
+    background-color: var(--gray);
+    color: var(--orange);
+}
+
+
+/* ------------------------------------------
+   KEEP FOCUS FROM CHANGING THE HEADER
+------------------------------------------ */
+
+.stats-table th.sortable-header:focus {
+    outline: none;
+
+    background-color: var(--gray);
+    color: var(--white);
+}
+
+
+/* ------------------------------------------
+   ACTIVE + FOCUS
+------------------------------------------ */
+
+.stats-table th.sortable-header.sort-active:focus {
+    outline: none;
+
+    background-color: var(--gray);
+    color: var(--orange);
+}
+
+
+/* ------------------------------------------
+   KEYBOARD ACCESSIBILITY
+------------------------------------------ */
+
+.stats-table th.sortable-header:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: -2px;
+
+    background-color: var(--gray);
+    color: var(--white);
+}
+
+
+/* Active column stays orange even when focused */
+
+.stats-table th.sortable-header.sort-active:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: -2px;
+
+    background-color: var(--gray);
+    color: var(--orange);
+}
+
+
+/* ==========================================
+   MOBILE — GENERAL STATS
+========================================== */
+
+@media (max-width: 900px) {
+
+    .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .game-breakdown {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE — STATS
+========================================== */
+
+@media (max-width: 700px) {
+
+    .stats-section {
+        padding: 50px 20px 70px;
+    }
+
+
+    /* --------------------------------------
+       HEADER
+    -------------------------------------- */
+
+    .stats-header {
+        align-items: flex-start;
+
+        margin-bottom: 30px;
+    }
+
+    .stats-header h2 {
+        font-size: 30px;
+    }
+
+    #stats-status {
+        font-size: 13px;
+    }
+
+
+    /* --------------------------------------
+       SUMMARY
+    -------------------------------------- */
+
+    .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+
+        margin-bottom: 35px;
+    }
+
+    .stats-summary-card {
+        min-height: 90px;
+
+        padding: 16px;
+    }
+
+    .stats-summary-card strong {
+        font-size: 28px;
+    }
+
+    .stats-summary-label {
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* --------------------------------------
+       FILTERS
+    -------------------------------------- */
+
+    .stats-filters {
+        flex-direction: column;
+
+        gap: 15px;
+
+        margin-bottom: 35px;
+
+        padding: 18px;
+    }
+
+    .stats-filter {
+        width: 100%;
+    }
+
+    .stats-filter select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    /* --------------------------------------
+       STATS PANEL
+    -------------------------------------- */
+
+    .stats-panel {
+        margin-bottom: 35px;
+
+        border-radius: 8px;
+    }
+
+    .stats-panel-header {
+        padding: 20px 18px 17px;
+    }
+
+    .stats-panel-header h2 {
+        font-size: 20px;
+    }
+
+
+    /* --------------------------------------
+       TABLE
+    -------------------------------------- */
+
+    .stats-table {
+        min-width: 700px;
+    }
+
+    .team-stats-table {
+        min-width: 760px;
+    }
+
+    .stats-table th {
+        padding: 11px 12px;
+
+        font-size: 9px;
+    }
+
+    .stats-table td {
+        padding: 13px 12px;
+
+        font-size: 13px;
+    }
+
+
+    /* --------------------------------------
+       GAME BREAKDOWN
+    -------------------------------------- */
+
+    .game-breakdown {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        padding: 18px;
+    }
+
+    .game-stat-card-header {
+        padding: 15px 16px;
+    }
+
+    .game-stat-card-header h3 {
+        font-size: 16px;
+    }
+
+    .game-stat-values {
+        padding: 16px 10px;
+    }
+
+    .game-stat-values > div {
+        padding: 5px 6px;
+    }
+
+    .game-stat-values strong {
+        font-size: 20px;
+    }
+
+    .game-stat-values span {
+        font-size: 8px;
+
+        letter-spacing: 0.8px;
+    }
+
+
+    /* --------------------------------------
+       TRADITIONAL SPAWN CAMP PAGE
+    -------------------------------------- */
+
+    .sc-page-header {
+        margin-top: 30px;
+
+        padding: 28px 25px 26px;
+    }
+
+    .sc-page-header h1 {
+        font-size: 34px;
+
+        letter-spacing: 3.5px;
+    }
+
+    .sc-page-header p {
+        font-size: 13px;
+
+        letter-spacing: 2.5px;
+    }
+
+    .sc-page-header .section-line {
+        width: 45px;
+
+        margin-bottom: 15px;
+    }
+
+
+    /* --------------------------------------
+       BRACKET PAGE
+    -------------------------------------- */
+
+    .bracket-section {
+        padding: 35px 20px 70px;
+    }
+
+
+    /* --------------------------------------
+       BRACKET HEADER
+    -------------------------------------- */
+
+    .bracket-section .bracket-header {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+
+        margin-bottom: 35px;
+    }
+
+    .bracket-section .bracket-header h2 {
+        font-size: 30px;
+    }
+
+    .bracket-section #bracket-status {
+        font-size: 13px;
+    }
+
+    .bracket-section .bracket-header .button {
+        align-self: flex-start;
+    }
+
+
+    /* --------------------------------------
+       BRACKET CONTAINER
+    -------------------------------------- */
+
+    .bracket-section .bracket-container {
+        flex-direction: column;
+
+        gap: 50px;
+
+        padding: 10px 10px 30px;
+
+        overflow-x: auto;
+        overflow-y: visible;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    /* --------------------------------------
+       BRACKET GROUP
+    -------------------------------------- */
+
+    .bracket-section .bracket-group {
+        width: max-content;
+
+        min-width: 100%;
+    }
+
+    .bracket-section .bracket-group-title {
+        margin-bottom: 22px;
+
+        font-size: 15px;
+
+        letter-spacing: 2.5px;
+    }
+
+    .bracket-section .bracket-group-title::before {
+        width: 28px;
+
+        margin-right: 9px;
+    }
+
+
+    /* --------------------------------------
+       BRACKET ROUNDS
+    -------------------------------------- */
+
+    .bracket-section .bracket-rounds {
+        gap: 35px;
+    }
+
+
+    /* --------------------------------------
+       ROUND
+    -------------------------------------- */
+
+    .bracket-section .bracket-round {
+        flex: 0 0 220px;
+    }
+
+    .bracket-section .bracket-round h3 {
+        margin-bottom: 18px;
+
+        font-size: 12px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    /* --------------------------------------
+       MATCH
+    -------------------------------------- */
+
+    .bracket-section .bracket-match {
+        margin-bottom: 25px;
+    }
+
+
+    /* --------------------------------------
+       MATCH HEADER
+    -------------------------------------- */
+
+    .bracket-section .match-info {
+        padding: 9px 12px;
+
+        font-size: 9px;
+
+        letter-spacing: 1.2px;
+    }
+
+
+    /* --------------------------------------
+       TEAMS
+    -------------------------------------- */
+
+    .bracket-section .bracket-team {
+        min-height: 42px;
+
+        padding: 9px 12px;
+
+        font-size: 14px;
+    }
+
+    .bracket-section .bracket-team strong {
+        font-size: 16px;
+    }
+
+
+    /* --------------------------------------
+       FILTER RESET
+    -------------------------------------- */
+
+    .stats-filter-reset {
+        width: 100%;
+
+        align-self: stretch;
+    }
+
+
+    /* --------------------------------------
+       TEAM TABLE
+    -------------------------------------- */
+
+    .team-stats-table {
+        min-width: 760px;
+    }
+
+}
+

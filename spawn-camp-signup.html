@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spawn-camp-signup-style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>SPAWN CAMP Sign UP</title>
+
+</head>
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                <img src="wackyboyzlogo-orange.png" alt="Wacky Boyz Home">
+            </a>
+
+            <nav class="sc-nav">
+                <a href="index.html">Home</a>
+                <a href="spawn-camp.html">Spawn Camp</a>
+                <a href="#">About</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- SIGNUP HERO-->
+
+        <section class="signup-hero">
+
+            <div class="signup-hero-content">
+
+                <p class="signup-eyebrow">
+                    TEAMS OF FOUR • XBOX 360 LAN
+                </p>
+
+                <h1>
+                    JOIN THE LOBBY
+                </h1>
+
+                <span class="signup-hero-line"></span>
+
+                <p class="signup-hero-subtitle">
+                    SIGN UP BY 9/26
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- SIGNUP FORM SECTION -->
+
+        <section class="signup-section">
+
+            <div class="signup-card">
+
+                <!-- FORM HEADER -->
+
+                <div class="signup-heading">
+
+                    <span class="sc-section-line"></span>
+
+                    <h2>
+                        PLAYER INFORMATION
+                    </h2>
+
+                    <p>
+                        Register for yourself below. If you're the team captain and signing up your whole team,
+                        check the box and register each of you.
+                    </p>
+
+                </div>
+
+                <!-- FORM -->
+
+                <form id="spawn-camp-form">
+
+                    <!-- HONEYPOT TEST -->
+                     <div class="website-field" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                            >
+                     </div>
+                    
+                    <!-- PLAYER INFO -->
+
+                    <div class="form-section">
+
+                        <div class="form-field">
+
+                            <label for="player-name">
+                                Player Name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="player-name"
+                                name="player-name"
+                                required
+                                >
+
+                        </div>
+
+                        <div class="form-field">
+
+                            <label for="gamertag">
+                                Gamertag
+                            </label>
+
+                            <input
+                                type="text"
+                                id="gamertag"
+                                name="gamertag"
+                                >
+
+                                <span class="field-help">
+                                    Optional
+                                </span>
+
+                        </div>
+
+                        <div class="form-field">
+
+                            <label for="discord">
+                                Discord name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="discord"
+                                name="discord"
+                                required
+                                >
+
+                                <span class="field-help">
+                                    In case we need to contact you.
+                                </span>
+
+                        </div>
+
+                        <!-- CAPTAIN CHECKBOX -->
+
+                        <div class="captain-option">
+
+                            <label class="captain-label">
+
+                                <input
+                                    type="checkbox"
+                                    id="captain"
+                                    name="captain"
+                                    >
+
+                                    <span class="captain-checkmark"></span>
+
+                                    <span class="captain-text">
+
+                                        <strong>
+                                            I'M THE TEAM CAPTAIN
+                                        </strong>
+
+                                        <small>
+                                            Register yourself and any teammates.
+                                        </small>
+
+                                    </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CAPTAIN TEAM REGISTER -->
+
+                    <div
+                    class="team-section"
+                    id="team-section"
+                    >
+                
+                        <div class="form-section-heading">
+
+                            <span class="sc-section-line"></span>
+
+                            <h2>
+                                TEAM INFO
+                            </h2>
+
+                            <p>
+                                Enter your team name and add any teammates.
+                            </p>
+
+                        </div>
+
+                        <!-- TEAM NAME -->
+
+                        <div class="form-field">
+
+                            <label for="team-name">
+                                Team Name
+
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="team-name"
+                                name="teamName"
+                                >
+
+                        </div>
+
+                        <!-- PLAYER 2 -->
+
+                        <div class="team-player">
+
+                            <h3>
+                                PLAYER 2
+                            </h3>
+                        
+
+                            <div class="player-fields">
+
+                                <div class="form-field">
+
+                                    <label for="player2-name">
+                                        Player Name
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player2-name"
+                                        name="player2Name"
+                                        >
+
+                                </div>
+
+                                <div class="form-field">
+
+                                    <label for="player2-gamertag">
+                                        Gamertag
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player2-gamertag"
+                                        name="player2Gamertag"
+                                        >
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                        <!-- PLAYER 3 -->
+
+                        <div class="team-player">
+
+                            <h3>
+                                PLAYER 3
+                            </h3>
+                        
+
+                            <div class="player-fields">
+
+                                <div class="form-field">
+
+                                    <label for="player3-name">
+                                        Player Name
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player3-name"
+                                        name="player3Name"
+                                        >
+
+                                </div>
+
+                                <div class="form-field">
+
+                                    <label for="player3-gamertag">
+                                        Gamertag
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player3-gamertag"
+                                        name="player3Gamertag"
+                                        >
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                        <!-- PLAYER 4 -->
+
+                        <div class="team-player">
+
+                            <h3>
+                                PLAYER 4
+                            </h3>
+                        
+
+                            <div class="player-fields">
+
+                                <div class="form-field">
+
+                                    <label for="player4-name">
+                                        Player Name
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player4-name"
+                                        name="player4Name"
+                                        >
+
+                                </div>
+
+                                <div class="form-field">
+
+                                    <label for="player4-gamertag">
+                                        Gamertag
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="player4-gamertag"
+                                        name="player4Gamertag"
+                                        >
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                </div>
+
+                <!-- SUBMIT -->
+
+                <div class="form-submit">
+
+                    <button
+                        type="submit"
+                        class="button signup-button"
+                    >
+                        LOCK IN
+                    </button>
+
+                    <p class="individual-note">
+                        You can sign up solo but we can't gaurantee there will be enough solos to make a full team. 
+                        The best way to ensure you're able to participate in the bracket is by signing up as a team of 4.
+                    </p>
+
+                </div>
+
+
+                </form>
+
+                <div
+                    id="form-message"
+                    class="form-message"
+                    role="alert"
+                    aria-live="polite"
+                >   
+                    <div class="form-message-title"></div>
+                    <div class="form-message-text"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="sc-footer">
+
+        <p>&copy; 2026 WACKY BOYZ</p>
+
+    </footer>
+
+    <!-- CAPTAIN FORM JAVASCRIPT -->
+
+
+<script>
+
+    // ==========================================
+    // ELEMENTS
+    // ==========================================
+
+    const form =
+        document.getElementById("spawn-camp-form");
+
+    const captainCheckbox =
+        document.getElementById("captain");
+
+    const teamSection =
+        document.getElementById("team-section");
+
+    const teamName =
+        document.getElementById("team-name");
+
+    const player2Name =
+        document.getElementById("player2-name");
+
+    const player3Name =
+        document.getElementById("player3-name");
+
+    const player4Name =
+        document.getElementById("player4-name");
+
+    const formMessage =
+        document.getElementById("form-message");
+
+    const formMessageTitle =
+        document.querySelector(".form-message-title");
+
+    const formMessageText =
+        document.querySelector(".form-message-text");
+
+
+    // ==========================================
+    // GOOGLE APPS SCRIPT URL
+    // ==========================================
+
+    const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbznLKEc0ATrYConMYRstm9h0zlsoPVOpaW9MFeiVCNhSXpK1Sp6u6oW7dK6UHxjqBIh/exec";
+
+
+    // ==========================================
+    // FORM MESSAGE
+    // ==========================================
+
+    function showFormMessage(type, title, message) {
+
+        formMessage.classList.remove(
+            "success",
+            "error",
+            "visible"
+        );
+
+        formMessage.classList.add(type);
+
+        formMessageTitle.textContent =
+            title;
+
+        formMessageText.textContent =
+            message;
+
+
+        // Force the browser to recognize
+        // the initial state before animating in.
+
+        requestAnimationFrame(function() {
+
+            formMessage.classList.add("visible");
+
+        });
+
+
+        // Bring the message into view
+
+        formMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+
+    // ==========================================
+    // CAPTAIN CHECKBOX
+    // ==========================================
+
+    captainCheckbox.addEventListener(
+        "change",
+        function() {
+
+            const captain =
+                this.checked;
+
+
+            if (captain) {
+
+                // Show team section
+
+                teamSection.classList.add(
+                    "visible"
+                );
+
+
+                // Require team name
+
+                teamName.required = true;
+
+
+                // Require all four players
+
+                player2Name.required = true;
+                player3Name.required = true;
+                player4Name.required = true;
+
+            } else {
+
+                // Hide team section
+
+                teamSection.classList.remove(
+                    "visible"
+                );
+
+
+                // Remove requirements
+
+                teamName.required = false;
+
+                player2Name.required = false;
+                player3Name.required = false;
+                player4Name.required = false;
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // FORM SUBMISSION
+    // ==========================================
+
+    form.addEventListener(
+        "submit",
+        async function(event) {
+
+            // Prevent normal page submission
+
+            event.preventDefault();
+
+
+            // --------------------------------------
+            // BROWSER VALIDATION
+            // --------------------------------------
+
+            if (!form.checkValidity()) {
+
+                form.reportValidity();
+
+                return;
+
+            }
+
+
+            // --------------------------------------
+            // CAPTAIN VALIDATION
+            // --------------------------------------
+
+            if (captainCheckbox.checked) {
+
+                const player2 =
+                    player2Name.value.trim();
+
+                const player3 =
+                    player3Name.value.trim();
+
+                const player4 =
+                    player4Name.value.trim();
+
+
+                if (
+                    !player2 ||
+                    !player3 ||
+                    !player4
+                ) {
+
+                    showFormMessage(
+                        "error",
+                        "FULL TEAM REQUIRED",
+                        "Captain registrations must include all 4 players."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            // --------------------------------------
+            // CHECK CAPTAIN STATUS
+            // --------------------------------------
+
+            const captain =
+                captainCheckbox.checked;
+
+
+            // --------------------------------------
+            // BUILD FORM DATA
+            // --------------------------------------
+
+            const formData =
+                new URLSearchParams();
+
+
+            // --------------------------------------
+            // PLAYER 1
+            // --------------------------------------
+
+            formData.append(
+                "playerName",
+                document
+                    .getElementById("player-name")
+                    .value
+                    .trim()
+            );
+
+            formData.append(
+                "gamertag",
+                document
+                    .getElementById("gamertag")
+                    .value
+                    .trim()
+            );
+
+            formData.append(
+                "discord",
+                document
+                    .getElementById("discord")
+                    .value
+                    .trim()
+            );
+
+
+            // --------------------------------------
+            // CAPTAIN
+            // --------------------------------------
+
+            formData.append(
+                "captain",
+                captain
+                    ? "true"
+                    : "false"
+            );
+
+
+            // --------------------------------------
+            // TEAM NAME
+            // --------------------------------------
+
+            formData.append(
+                "teamName",
+                teamName.value.trim()
+            );
+
+
+            // --------------------------------------
+            // PLAYER 2
+            // --------------------------------------
+
+            formData.append(
+                "player2Name",
+                player2Name.value.trim()
+            );
+
+            formData.append(
+                "player2Gamertag",
+                document
+                    .getElementById("player2-gamertag")
+                    .value
+                    .trim()
+            );
+
+            formData.append(
+                "player2Discord",
+                ""
+            );
+
+
+            // --------------------------------------
+            // PLAYER 3
+            // --------------------------------------
+
+            formData.append(
+                "player3Name",
+                player3Name.value.trim()
+            );
+
+            formData.append(
+                "player3Gamertag",
+                document
+                    .getElementById("player3-gamertag")
+                    .value
+                    .trim()
+            );
+
+            formData.append(
+                "player3Discord",
+                ""
+            );
+
+
+            // --------------------------------------
+            // PLAYER 4
+            // --------------------------------------
+
+            formData.append(
+                "player4Name",
+                player4Name.value.trim()
+            );
+
+            formData.append(
+                "player4Gamertag",
+                document
+                    .getElementById("player4-gamertag")
+                    .value
+                    .trim()
+            );
+
+            formData.append(
+                "player4Discord",
+                ""
+            );
+
+
+            // --------------------------------------
+            // HONEYPOT
+            // --------------------------------------
+
+            formData.append(
+                "website",
+                document
+                    .getElementById("website")
+                    .value
+            );
+
+
+            // ======================================
+            // SEND TO GOOGLE APPS SCRIPT
+            // ======================================
+
+            try {
+
+                const response =
+                    await fetch(
+                        GOOGLE_SCRIPT_URL,
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                // ----------------------------------
+                // READ GOOGLE RESPONSE
+                // ----------------------------------
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "Google Apps Script response:",
+                    result
+                );
+
+
+                // ----------------------------------
+                // GOOGLE REJECTED SUBMISSION
+                // ----------------------------------
+
+                if (!result.success) {
+
+                    showFormMessage(
+                        "error",
+                        "SOMETHING WENT WRONG",
+                        result.message ||
+                        "The registration could not be completed."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // SUCCESS
+                // ==================================
+
+                showFormMessage(
+                    "success",
+                    "You're Locked & Loaded",
+                    "See you on the battlefield soldier o7"
+                );
+
+
+                // ----------------------------------
+                // RESET FORM
+                // ----------------------------------
+
+                form.reset();
+
+
+                // ----------------------------------
+                // RESET TEAM SECTION
+                // ----------------------------------
+
+                teamSection.classList.remove(
+                    "visible"
+                );
+
+
+                // ----------------------------------
+                // RESET REQUIRED STATES
+                // ----------------------------------
+
+                teamName.required = false;
+
+                player2Name.required = false;
+                player3Name.required = false;
+                player4Name.required = false;
+
+
+            } catch (error) {
+
+                // ----------------------------------
+                // CONNECTION ERROR
+                // ----------------------------------
+
+                console.error(
+                    "Registration error:",
+                    error
+                );
+
+
+                showFormMessage(
+                    "error",
+                    "CONNECTION ERROR",
+                    "We couldn't reach the registration server. Please check your connection and try again."
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>
