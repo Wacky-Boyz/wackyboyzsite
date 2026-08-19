@@ -155,9 +155,9 @@
 
     margin: 12px 0 0;
 
-    color: #666;
+    color: var(--orange);
 
-    font-size: 18px;
+    font-size: 14px;
 
     font-weight: bold;
   }
