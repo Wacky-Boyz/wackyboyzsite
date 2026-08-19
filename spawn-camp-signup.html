@@ -414,6 +414,102 @@
 
     <!-- CAPTAIN FORM JAVASCRIPT -->
 
+    <!-- ==========================================
+     SOLO PLAYER CONFIRMATION MODAL
+========================================== -->
+
+<div
+    id="solo-confirm-modal"
+    class="solo-confirm-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="solo-confirm-backdrop"
+        id="solo-confirm-backdrop"
+    ></div>
+
+
+    <div
+        class="solo-confirm-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="solo-confirm-title"
+    >
+
+        <button
+            type="button"
+            class="solo-confirm-close"
+            id="solo-confirm-close"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+        <div class="solo-confirm-content">
+
+            <span class="solo-confirm-label">
+                SOLO REGISTRATION
+            </span>
+
+
+            <h2 id="solo-confirm-title">
+                WAIT — LOOKING FOR A TEAM?
+            </h2>
+
+
+            <span class="solo-confirm-line"></span>
+
+
+            <p>
+                Solo registration is allowed, but we strongly
+                encourage players to join a full team before
+                registering.
+            </p>
+
+
+            <p>
+                If you already have 4 players, go back and
+                check <strong>"I'm the captain"</strong> to
+                register your full team together.
+            </p>
+
+
+            <p>
+                If you register as a solo player and later
+                find a team, please <strong>contact us instead
+                of submitting another registration.</strong>
+                We'll update your registration.
+            </p>
+
+
+            <div class="solo-confirm-actions">
+
+                <button
+                    type="button"
+                    class="solo-confirm-secondary"
+                    id="solo-confirm-cancel"
+                >
+                    GO BACK
+                </button>
+
+
+                <button
+                    type="button"
+                    class="solo-confirm-primary"
+                    id="solo-confirm-continue"
+                >
+                    CONTINUE AS SOLO
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -450,6 +546,23 @@
 
     const formMessageText =
         document.querySelector(".form-message-text");
+
+        const soloConfirmModal =
+    document.getElementById("solo-confirm-modal");
+
+const soloConfirmClose =
+    document.getElementById("solo-confirm-close");
+
+const soloConfirmCancel =
+    document.getElementById("solo-confirm-cancel");
+
+const soloConfirmContinue =
+    document.getElementById("solo-confirm-continue");
+
+const soloConfirmBackdrop =
+    document.getElementById("solo-confirm-backdrop");
+
+let soloSubmissionConfirmed = false;
 
 
     // ==========================================
@@ -561,12 +674,35 @@
     // ==========================================
 
     form.addEventListener(
-        "submit",
-        async function(event) {
+    "submit",
+    async function(event) {
 
-            // Prevent normal page submission
+        event.preventDefault();
 
-            event.preventDefault();
+
+        if (!form.checkValidity()) {
+
+            form.reportValidity();
+
+            return;
+
+        }
+
+
+        // --------------------------------------
+        // SOLO CONFIRMATION
+        // --------------------------------------
+
+        if (
+            !captainCheckbox.checked &&
+            !soloSubmissionConfirmed
+        ) {
+
+            openSoloConfirmModal();
+
+            return;
+
+        }
 
 
             // --------------------------------------
@@ -873,6 +1009,79 @@
 
         }
     );
+
+    // ==========================================
+// SOLO CONFIRMATION MODAL
+// ==========================================
+
+function openSoloConfirmModal() {
+
+    soloConfirmModal.classList.add("visible");
+
+    soloConfirmModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeSoloConfirmModal() {
+
+    soloConfirmModal.classList.remove(
+        "visible"
+    );
+
+    soloConfirmModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+// ==========================================
+// CLOSE SOLO MODAL
+// ==========================================
+
+soloConfirmClose.addEventListener(
+    "click",
+    closeSoloConfirmModal
+);
+
+soloConfirmCancel.addEventListener(
+    "click",
+    closeSoloConfirmModal
+);
+
+soloConfirmBackdrop.addEventListener(
+    "click",
+    closeSoloConfirmModal
+);
+
+// ==========================================
+// CONFIRM SOLO REGISTRATION
+// ==========================================
+
+soloConfirmContinue.addEventListener(
+    "click",
+    function() {
+
+        soloSubmissionConfirmed = true;
+
+        closeSoloConfirmModal();
+
+        form.requestSubmit();
+
+    }
+);
+
+soloSubmissionConfirmed = false;
 
 </script>
 

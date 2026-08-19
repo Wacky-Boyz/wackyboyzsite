@@ -560,3 +560,289 @@
         padding: 20px;
     }
   }
+
+  /* ==========================================
+   SOLO CONFIRMATION MODAL
+========================================== */
+
+.solo-confirm-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+
+.solo-confirm-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ------------------------------------------
+   BACKDROP
+------------------------------------------ */
+
+.solo-confirm-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(39,39,39,0.72);
+
+    backdrop-filter: blur(3px);
+}
+
+
+/* ------------------------------------------
+   DIALOG
+------------------------------------------ */
+
+.solo-confirm-dialog {
+    position: relative;
+
+    width: min(560px, 100%);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    background: var(--white);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+
+    transform: translateY(12px);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.solo-confirm-modal.visible
+.solo-confirm-dialog {
+
+    transform: translateY(0);
+}
+
+
+/* ------------------------------------------
+   CLOSE BUTTON
+------------------------------------------ */
+
+.solo-confirm-close {
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.solo-confirm-close:hover {
+    color: var(--gray);
+}
+
+
+/* ------------------------------------------
+   CONTENT
+------------------------------------------ */
+
+.solo-confirm-content {
+    padding: 40px 35px 35px;
+}
+
+
+.solo-confirm-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.solo-confirm-content h2 {
+    margin: 0;
+
+    color: var(--gray);
+
+    font-size: clamp(27px, 5vw, 36px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+}
+
+
+.solo-confirm-line {
+    display: block;
+
+    width: 45px;
+    height: 3px;
+
+    margin: 18px 0 22px;
+
+    background: var(--orange);
+}
+
+
+.solo-confirm-content p {
+    margin: 0 0 15px;
+
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+}
+
+
+.solo-confirm-content p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+/* ------------------------------------------
+   ACTIONS
+------------------------------------------ */
+
+.solo-confirm-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+.solo-confirm-secondary,
+.solo-confirm-primary {
+    min-height: 44px;
+
+    padding: 11px 18px;
+
+    border-radius: 4px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.solo-confirm-secondary {
+    border: 1px solid var(--border);
+
+    background: var(--white);
+
+    color: var(--gray);
+}
+
+
+.solo-confirm-secondary:hover {
+    border-color: var(--gray);
+
+    background: #f7f7f7;
+}
+
+
+.solo-confirm-primary {
+    border: 1px solid var(--orange);
+
+    background: var(--orange);
+
+    color: var(--white);
+}
+
+
+.solo-confirm-primary:hover {
+    background: var(--gray);
+
+    border-color: var(--gray);
+
+    transform: translateY(-1px);
+}
+
+
+/* ------------------------------------------
+   MOBILE
+------------------------------------------ */
+
+@media (max-width: 600px) {
+
+    .solo-confirm-modal {
+        padding: 15px;
+    }
+
+    .solo-confirm-content {
+        padding: 35px 22px 22px;
+    }
+
+    .solo-confirm-content h2 {
+        font-size: 27px;
+    }
+
+    .solo-confirm-content p {
+        font-size: 14px;
+    }
+
+    .solo-confirm-actions {
+        flex-direction: column-reverse;
+    }
+
+    .solo-confirm-secondary,
+    .solo-confirm-primary {
+        width: 100%;
+    }
+
+}
