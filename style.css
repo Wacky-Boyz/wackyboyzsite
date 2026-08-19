@@ -173,7 +173,7 @@ h3 {
 
     background-color: var(--blue);
     
-    margin: 12 auto 0;
+    margin: 12px auto 0;
 }
 
 .about-section {
@@ -424,24 +424,205 @@ footer p {
 }
 
 @media (max-width: 768px) {
+
+    /* --------------------------------------
+       GLOBAL
+    -------------------------------------- */
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: calc(100% - 30px);
+        padding: 0;
+    }
+
+
+    /* --------------------------------------
+       HEADER
+    -------------------------------------- */
+
+    .header-inner {
+        width: calc(100% - 30px);
+        min-height: 70px;
+        padding: 12px 0;
+
+        flex-wrap: wrap;
+    }
+
+    .logo img {
+        width: 125px;
+    }
+
+    nav {
+        gap: 15px;
+        margin-left: auto;
+    }
+
+    nav a {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    /* --------------------------------------
+       HEADINGS
+    -------------------------------------- */
+
+    h1 {
+        font-size: clamp(36px, 10vw, 52px);
+    }
+
+    h2 {
+        font-size: clamp(28px, 7vw, 38px);
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+
+
+    /* --------------------------------------
+       BUTTON
+    -------------------------------------- */
+
+    .button {
+        min-height: 44px;
+
+        padding: 12px 20px;
+
+        font-size: 12px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* --------------------------------------
+       SECTION SPACING
+    -------------------------------------- */
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 27px;
+        letter-spacing: 1.5px;
+    }
+
+
+    /* --------------------------------------
+       ABOUT
+    -------------------------------------- */
+
     .about-section {
         grid-template-columns: 1fr;
+
+        padding: 40px 20px;
+
+        border-radius: 10px;
     }
 
     .about-text {
-        padding: 50px 25px;
+        padding: 10px 5px 30px;
     }
 
-    .hero {
-        height: 450px;
+    .about-text p {
+        font-size: 15px;
+        line-height: 1.7;
     }
 
-    .hero-content {
-        font-size: 40px;
-        letter-spacing: 4px;
+    .about-image {
+        padding: 0;
+    }
+
+    .about-image img {
+        height: 300px;
+
+        border-radius: 10px;
+    }
+
+
+    /* --------------------------------------
+       CARD SECTION
+    -------------------------------------- */
+
+    .card-section {
+        padding: 55px 15px;
+        border-radius: 10px;
+    }
+
+    .card-section .container {
+        width: 100%;
+        padding: 0;
     }
 
     .card-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+
+    /* --------------------------------------
+       MAIN HERO
+    -------------------------------------- */
+
+    .hero {
+        height: 400px;
+        border-radius: 10px;
+    }
+
+    .hero-content {
+        width: calc(100% - 40px);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(40px, 11vw, 60px);
+        letter-spacing: 4px;
+    }
+
+    .hero-content p:not(.eyebrow) {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .hero-span {
+        width: min(280px, 70%);
+        margin: 20px auto 25px;
+    }
+
+    .eyebrow {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+
+    /* --------------------------------------
+       FOOTER
+    -------------------------------------- */
+
+    footer {
+        padding: 30px 15px;
+    }
+
+    footer p {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
 }
