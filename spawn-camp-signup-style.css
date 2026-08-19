@@ -429,11 +429,13 @@
 
     margin: 15px auto 0;
 
-    color: #777;
+    color: var(--orange);
 
-    font-size: 12px;
+    font-size: 14px;
 
     line-height: 1.5;
+
+    font-weight: bold;
   }
 
 /*=========================
