@@ -2333,3 +2333,64 @@ nav a:hover {
 
 }
 
+/* ==========================================
+   GRAND FINAL EMPHASIS
+========================================== */
+
+.sc-grand-final {
+    width: 320px !important;
+
+    box-shadow:
+        0 10px 30px rgba(39,39,39,0.12);
+
+    border: 1px solid rgba(39,39,39,0.10);
+
+    z-index: 4;
+}
+
+.sc-grand-final .match-info {
+    padding: 13px 16px;
+
+    font-size: 11px;
+
+    letter-spacing: 1.8px;
+}
+
+.sc-grand-final .bracket-team {
+    min-height: 58px;
+
+    padding: 13px 16px;
+
+    font-size: 17px;
+
+    font-weight: 500;
+}
+
+.sc-grand-final .bracket-team strong {
+    font-size: 20px;
+}
+
+.sc-grand-final .bracket-divider {
+    margin: 0 16px;
+}
+
+.sc-grand-final .match-info span:first-child {
+    color: var(--white);
+    font-weight: 800;
+}
+
+.sc-grand-final.match-upcoming {
+    opacity: 1;
+}
+
+.sc-grand-final.match-upcoming .match-info {
+    background: var(--gray);
+}
+
+.sc-grand-final.match-live {
+    border-left: 5px solid var(--orange);
+}
+
+.sc-grand-final.match-complete {
+    border-left: 5px solid var(--orange);
+}

@@ -117,7 +117,9 @@ function removeOldBracketGraphics() {
             ".bracket-connections, " +
             ".bracket-cross-connections, " +
             ".sc-bracket-local-lines, " +
-            ".sc-bracket-cross-lines"
+            ".sc-bracket-cross-lines, " +
+            ".sc-grand-final-lines, " +
+            ".sc-grand-final"
         )
         .forEach(
             function(element) {
@@ -236,16 +238,8 @@ function renderBracket(
     rawMatches
 ) {
 
-    // ------------------------------------------
-    // REMOVE ANY LEFTOVER SVGs
-    // ------------------------------------------
-
     removeOldBracketGraphics();
 
-
-    // ------------------------------------------
-    // CLEAR BRACKET
-    // ------------------------------------------
 
     bracketContainer.innerHTML = "";
 
@@ -254,9 +248,9 @@ function renderBracket(
         "relative";
 
 
-    // ------------------------------------------
+    // ==========================================
     // EMPTY STATE
-    // ------------------------------------------
+    // ==========================================
 
     if (
         !rawMatches ||
@@ -294,9 +288,9 @@ function renderBracket(
     }
 
 
-    // ------------------------------------------
+    // ==========================================
     // NORMALIZE DATA
-    // ------------------------------------------
+    // ==========================================
 
     currentBracketMatches =
         rawMatches.map(
@@ -304,9 +298,9 @@ function renderBracket(
         );
 
 
-    // ------------------------------------------
+    // ==========================================
     // SEPARATE WINNERS / LOSERS
-    // ------------------------------------------
+    // ==========================================
 
     const winnersMatches =
         currentBracketMatches.filter(
@@ -338,9 +332,9 @@ function renderBracket(
         );
 
 
-    // ------------------------------------------
-    // ROUND COUNTS
-    // ------------------------------------------
+    // ==========================================
+    // STATUS
+    // ==========================================
 
     const winnersRounds =
         getUniqueRounds(
@@ -363,9 +357,9 @@ function renderBracket(
         `${currentBracketMatches.length} matches • ${totalRounds} rounds • LIVE`;
 
 
-    // ------------------------------------------
+    // ==========================================
     // WINNERS BRACKET
-    // ------------------------------------------
+    // ==========================================
 
     if (
         winnersMatches.length
@@ -384,9 +378,9 @@ function renderBracket(
     }
 
 
-    // ------------------------------------------
+    // ==========================================
     // LOSERS BRACKET
-    // ------------------------------------------
+    // ==========================================
 
     if (
         losersMatches.length
@@ -405,9 +399,9 @@ function renderBracket(
     }
 
 
-    // ------------------------------------------
-    // POSITION AFTER LAYOUT
-    // ------------------------------------------
+    // ==========================================
+    // INITIAL LAYOUT
+    // ==========================================
 
     requestAnimationFrame(
         function() {
@@ -551,7 +545,7 @@ function normalizeText(
 
 
 // ==========================================
-// UNIQUE ROUNDS
+// GET UNIQUE ROUNDS
 // ==========================================
 
 function getUniqueRounds(
@@ -621,6 +615,7 @@ function findMatchByReference(
 
 
     return (
+
         currentBracketMatches.find(
             function(match) {
 
@@ -632,9 +627,338 @@ function findMatchByReference(
                 );
 
             }
-        ) ||
+        )
+
+        ||
+
         null
+
     );
+
+}
+
+
+
+// ==========================================
+// FIND WINNERS FINAL
+// ==========================================
+//
+// Highest round in Winners bracket.
+// ==========================================
+
+function findWinnersFinal() {
+
+    const winners =
+        currentBracketMatches
+            .filter(
+                function(match) {
+
+                    return (
+                        normalizeText(
+                            match.Bracket
+                        ) ===
+                        "winners"
+                    );
+
+                }
+            );
+
+
+    if (
+        !winners.length
+    ) {
+
+        return null;
+
+    }
+
+
+    const highestRound =
+        Math.max.apply(
+            null,
+            winners.map(
+                function(match) {
+
+                    return Number(
+                        match.Round
+                    );
+
+                }
+            )
+        );
+
+
+    const finalMatches =
+        winners.filter(
+            function(match) {
+
+                return (
+                    Number(match.Round) ===
+                    highestRound
+                );
+
+            }
+        );
+
+
+    return (
+        finalMatches.length
+            ? finalMatches[
+                finalMatches.length - 1
+            ]
+            : null
+    );
+
+}
+
+
+
+// ==========================================
+// FIND LOSERS FINAL
+// ==========================================
+//
+// Highest round in Losers bracket.
+// ==========================================
+
+function findLosersFinal() {
+
+    const losers =
+        currentBracketMatches
+            .filter(
+                function(match) {
+
+                    return (
+                        normalizeText(
+                            match.Bracket
+                        ) ===
+                        "losers"
+                    );
+
+                }
+            );
+
+
+    if (
+        !losers.length
+    ) {
+
+        return null;
+
+    }
+
+
+    const highestRound =
+        Math.max.apply(
+            null,
+            losers.map(
+                function(match) {
+
+                    return Number(
+                        match.Round
+                    );
+
+                }
+            )
+        );
+
+
+    const finalMatches =
+        losers.filter(
+            function(match) {
+
+                return (
+                    Number(match.Round) ===
+                    highestRound
+                );
+
+            }
+        );
+
+
+    return (
+        finalMatches.length
+            ? finalMatches[
+                finalMatches.length - 1
+            ]
+            : null
+    );
+
+}
+
+
+
+// ==========================================
+// FIND GRAND FINAL SHEET MATCH
+// ==========================================
+
+function findGrandFinalSheetMatch() {
+
+    return (
+
+        currentBracketMatches.find(
+            function(match) {
+
+                const id =
+                    normalizeText(
+                        match.MatchID
+                    );
+
+
+                const bracket =
+                    normalizeText(
+                        match.Bracket
+                    );
+
+
+                return (
+
+                    id === "finals" ||
+                    id === "final" ||
+                    id === "grandfinal" ||
+
+                    bracket === "finals" ||
+                    bracket === "grandfinal"
+
+                );
+
+            }
+        )
+
+        ||
+
+        null
+
+    );
+
+}
+
+
+
+// ==========================================
+// GET MATCH WINNER
+// ==========================================
+
+function getMatchWinner(
+    match
+) {
+
+    if (
+        !match
+    ) {
+
+        return "";
+
+    }
+
+
+    // ------------------------------------------
+    // Use Winner column first.
+    // ------------------------------------------
+
+    if (
+        match.Winner !== ""
+    ) {
+
+        return match.Winner;
+
+    }
+
+
+    // ------------------------------------------
+    // Don't infer incomplete matches.
+    // ------------------------------------------
+
+    if (
+        normalizeText(
+            match.Status
+        ) !==
+        "complete"
+    ) {
+
+        return "";
+
+    }
+
+
+    const score1 =
+        Number(
+            match.Score1
+        );
+
+
+    const score2 =
+        Number(
+            match.Score2
+        );
+
+
+    if (
+        !Number.isFinite(
+            score1
+        ) ||
+        !Number.isFinite(
+            score2
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    if (
+        score1 >
+        score2
+    ) {
+
+        return match.Team1;
+
+    }
+
+
+    if (
+        score2 >
+        score1
+    ) {
+
+        return match.Team2;
+
+    }
+
+
+    return "";
+
+}
+
+
+
+// ==========================================
+// GET GRAND FINAL PARTICIPANTS
+// ==========================================
+
+function getGrandFinalParticipants() {
+
+    const winnersFinal =
+        findWinnersFinal();
+
+
+    const losersFinal =
+        findLosersFinal();
+
+
+    return {
+
+        winnersTeam:
+            getMatchWinner(
+                winnersFinal
+            ),
+
+        losersTeam:
+            getMatchWinner(
+                losersFinal
+            )
+
+    };
 
 }
 
@@ -713,10 +1037,6 @@ function createBracketSection(
         "visible";
 
 
-    // ------------------------------------------
-    // GET ROUNDS
-    // ------------------------------------------
-
     const rounds =
         getUniqueRounds(
             matches
@@ -780,7 +1100,8 @@ function createBracketSection(
 
                 createRound(
                     round,
-                    roundMatches
+                    roundMatches,
+                    bracketType
                 )
 
             );
@@ -806,7 +1127,8 @@ function createBracketSection(
 
 function createRound(
     round,
-    matches
+    matches,
+    bracketType
 ) {
 
     const roundElement =
@@ -833,24 +1155,11 @@ function createRound(
         );
 
 
-    const roundNames = {
-
-        1: "ROUND 1",
-
-        2: "ROUND 2",
-
-        3: "SEMIFINALS",
-
-        4: "FINAL"
-
-    };
-
-
     title.textContent =
-        roundNames[
-            Number(round)
-        ] ||
-        `ROUND ${round}`;
+        getRoundTitle(
+            round,
+            bracketType
+        );
 
 
     roundElement.appendChild(
@@ -897,6 +1206,79 @@ function createRound(
 
 
     return roundElement;
+
+}
+
+
+
+// ==========================================
+// ROUND TITLES
+// ==========================================
+
+function getRoundTitle(
+    round,
+    bracketType
+) {
+
+    const roundNumber =
+        Number(
+            round
+        );
+
+
+    if (
+        bracketType ===
+        "winners"
+    ) {
+
+        const names = {
+
+            1: "ROUND 1",
+
+            2: "ROUND 2",
+
+            3: "WINNERS FINAL"
+
+        };
+
+
+        return (
+            names[roundNumber] ||
+            `ROUND ${roundNumber}`
+        );
+
+    }
+
+
+    if (
+        bracketType ===
+        "losers"
+    ) {
+
+        const names = {
+
+            1: "ROUND 1",
+
+            2: "ROUND 2",
+
+            3: "SEMIFINALS",
+
+            4: "LOSERS FINAL"
+
+        };
+
+
+        return (
+            names[roundNumber] ||
+            `ROUND ${roundNumber}`
+        );
+
+    }
+
+
+    return (
+        `ROUND ${roundNumber}`
+    );
 
 }
 
@@ -982,33 +1364,33 @@ function createMatch(
         "match-info";
 
 
-    const idElement =
+    const matchLabel =
         document.createElement(
             "span"
         );
 
 
-    idElement.textContent =
+    matchLabel.textContent =
         `Match ${match.MatchID}`;
 
 
-    const statusElement =
+    const statusLabel =
         document.createElement(
             "span"
         );
 
 
-    statusElement.textContent =
+    statusLabel.textContent =
         status;
 
 
     header.appendChild(
-        idElement
+        matchLabel
     );
 
 
     header.appendChild(
-        statusElement
+        statusLabel
     );
 
 
@@ -1206,17 +1588,6 @@ function getCard(
 // ==========================================
 // FIND INCOMING MATCHES
 // ==========================================
-//
-// This determines where a later-round match
-// should sit based on the spreadsheet.
-//
-// It checks both:
-//
-// Next Match ID
-// Loser Next Match ID
-//
-// It does NOT assume match order.
-// ==========================================
 
 function findIncomingMatches(
     targetMatch
@@ -1253,7 +1624,7 @@ function findIncomingMatches(
 
 
 // ==========================================
-// RESET POSITIONING
+// RESET BRACKET LAYOUT
 // ==========================================
 
 function resetBracketLayout() {
@@ -1297,12 +1668,16 @@ function resetBracketLayout() {
             }
         );
 
+
+    bracketContainer.style.paddingRight =
+        "";
+
 }
 
 
 
 // ==========================================
-// LAYOUT ENTIRE BRACKET
+// LAYOUT EVERYTHING
 // ==========================================
 
 function layoutBrackets() {
@@ -1313,10 +1688,6 @@ function layoutBrackets() {
     requestAnimationFrame(
         function() {
 
-            // --------------------------------------
-            // POSITION WINNERS
-            // --------------------------------------
-
             positionBracket(
                 "winners"
             );
@@ -1324,10 +1695,6 @@ function layoutBrackets() {
 
             requestAnimationFrame(
                 function() {
-
-                    // ----------------------------------
-                    // POSITION LOSERS
-                    // ----------------------------------
 
                     positionBracket(
                         "losers"
@@ -1348,6 +1715,9 @@ function layoutBrackets() {
                                     drawLocalBracketLines(
                                         "losers"
                                     );
+
+
+                                    positionGrandFinal();
 
                                 }
                             );
@@ -1404,10 +1774,6 @@ function positionBracket(
 
     }
 
-
-    // ------------------------------------------
-    // PROCESS EACH ROUND AFTER ROUND 1
-    // ------------------------------------------
 
     for (
         let i = 1;
@@ -1467,21 +1833,8 @@ function positionBracket(
                 const incoming =
                     findIncomingMatches(
                         match
-                    );
-
-
-                // ----------------------------------
-                // IMPORTANT:
-                // Only use incoming matches from
-                // THIS bracket for vertical
-                // positioning.
-                //
-                // Cross-bracket loser routing does
-                // not change where the card sits.
-                // ----------------------------------
-
-                const localIncoming =
-                    incoming.filter(
+                    )
+                    .filter(
                         function(source) {
 
                             return (
@@ -1496,7 +1849,7 @@ function positionBracket(
 
 
                 if (
-                    !localIncoming.length
+                    !incoming.length
                 ) {
 
                     return;
@@ -1505,7 +1858,7 @@ function positionBracket(
 
 
                 const sourceCards =
-                    localIncoming
+                    incoming
                         .map(
                             function(source) {
 
@@ -1528,10 +1881,6 @@ function positionBracket(
 
                 }
 
-
-                // ----------------------------------
-                // SOURCE CENTERS
-                // ----------------------------------
 
                 const centers =
                     sourceCards.map(
@@ -1568,10 +1917,6 @@ function positionBracket(
                     ) /
                     centers.length;
 
-
-                // ----------------------------------
-                // TARGET CONTAINER
-                // ----------------------------------
 
                 const containerRect =
                     container.getBoundingClientRect();
@@ -1702,10 +2047,6 @@ function createLocalSVG(
         `${height}px`;
 
 
-    svg.style.display =
-        "block";
-
-
     svg.style.pointerEvents =
         "none";
 
@@ -1734,17 +2075,10 @@ function createLocalSVG(
 // DRAW LOCAL BRACKET LINES
 // ==========================================
 //
-// Only draws:
-//
 // Winners → Winners
 // Losers → Losers
 //
-// It deliberately does NOT draw:
-//
-// Winners → Losers
-//
-// This keeps the two bracket sections
-// visually separate.
+// No normal cross-bracket lines.
 // ==========================================
 
 function drawLocalBracketLines(
@@ -1781,14 +2115,6 @@ function drawLocalBracketLines(
     }
 
 
-    roundsContainer.style.position =
-        "relative";
-
-
-    roundsContainer.style.overflow =
-        "visible";
-
-
     const svg =
         createLocalSVG(
             roundsContainer
@@ -1799,14 +2125,8 @@ function drawLocalBracketLines(
         roundsContainer.getBoundingClientRect();
 
 
-    // ------------------------------------------
-    // Look at each SOURCE match.
-    // ------------------------------------------
-
     currentBracketMatches.forEach(
         function(source) {
-
-            // Only source matches in this bracket.
 
             if (
                 normalizeText(
@@ -1842,7 +2162,7 @@ function drawLocalBracketLines(
                     bracketType
                 ) {
 
-                    drawLocalConnectionBetweenMatches(
+                    drawLocalConnection(
                         svg,
                         source,
                         target,
@@ -1855,15 +2175,7 @@ function drawLocalBracketLines(
 
 
             // --------------------------------------
-            // LOSER ROUTE
-            //
-            // IMPORTANT:
-            //
-            // We ONLY draw this if the loser stays
-            // inside the SAME bracket.
-            //
-            // Winners losers going to Losers
-            // are intentionally NOT drawn.
+            // LOSER ROUTE THAT STAYS IN SAME BRACKET
             // --------------------------------------
 
             if (
@@ -1884,7 +2196,7 @@ function drawLocalBracketLines(
                     bracketType
                 ) {
 
-                    drawLocalConnectionBetweenMatches(
+                    drawLocalConnection(
                         svg,
                         source,
                         target,
@@ -1903,10 +2215,10 @@ function drawLocalBracketLines(
 
 
 // ==========================================
-// DRAW CONNECTION BETWEEN TWO MATCHES
+// DRAW LOCAL CONNECTION
 // ==========================================
 
-function drawLocalConnectionBetweenMatches(
+function drawLocalConnection(
     svg,
     sourceMatch,
     targetMatch,
@@ -1949,10 +2261,6 @@ function drawLocalConnectionBetweenMatches(
         );
 
 
-    // ------------------------------------------
-    // Safety check.
-    // ------------------------------------------
-
     if (
         target.left <=
         source.right
@@ -1993,7 +2301,743 @@ function drawLocalConnectionBetweenMatches(
 
 
 // ==========================================
-// GET LOCAL POSITION
+// POSITION GRAND FINAL
+// ==========================================
+//
+// Grand Final sits to the right of the
+// Winners Final and Losers Final.
+// ==========================================
+
+function positionGrandFinal() {
+
+    const winnersFinal =
+        findWinnersFinal();
+
+
+    const losersFinal =
+        findLosersFinal();
+
+
+    if (
+        !winnersFinal ||
+        !losersFinal
+    ) {
+
+        return;
+
+    }
+
+
+    const winnersCard =
+        getCard(
+            winnersFinal.MatchID
+        );
+
+
+    const losersCard =
+        getCard(
+            losersFinal.MatchID
+        );
+
+
+    if (
+        !winnersCard ||
+        !losersCard
+    ) {
+
+        return;
+
+    }
+
+
+    // ------------------------------------------
+    // Remove previous Grand Final
+    // ------------------------------------------
+
+    const oldGrandFinal =
+        bracketContainer.querySelector(
+            ".sc-grand-final"
+        );
+
+
+    if (
+        oldGrandFinal
+    ) {
+
+        oldGrandFinal.remove();
+
+    }
+
+
+    const oldLines =
+        bracketContainer.querySelector(
+            ".sc-grand-final-lines"
+        );
+
+
+    if (
+        oldLines
+    ) {
+
+        oldLines.remove();
+
+    }
+
+
+    // ------------------------------------------
+    // Create Grand Final
+    // ------------------------------------------
+
+    const grandFinal =
+        createGrandFinalCard();
+
+
+    bracketContainer.appendChild(
+        grandFinal
+    );
+
+
+    // ------------------------------------------
+    // Force layout calculation
+    // ------------------------------------------
+
+    const bracketRect =
+        bracketContainer.getBoundingClientRect();
+
+
+    const winnersRect =
+        winnersCard.getBoundingClientRect();
+
+
+    const losersRect =
+        losersCard.getBoundingClientRect();
+
+
+    const grandFinalRect =
+        grandFinal.getBoundingClientRect();
+
+
+    // ------------------------------------------
+    // Grand Final width
+    //
+    // Desktop: 320px
+    // Mobile: 240px
+    // Small phone: 220px
+    // ------------------------------------------
+
+    let grandFinalWidth =
+        320;
+
+
+    if (
+        window.innerWidth <= 500
+    ) {
+
+        grandFinalWidth =
+            220;
+
+    }
+
+    else if (
+        window.innerWidth <= 700
+    ) {
+
+        grandFinalWidth =
+            240;
+
+    }
+
+
+    grandFinal.style.width =
+        `${grandFinalWidth}px`;
+
+
+    // ------------------------------------------
+    // Recalculate after width change
+    // ------------------------------------------
+
+    const updatedGrandFinalRect =
+        grandFinal.getBoundingClientRect();
+
+
+    // ------------------------------------------
+    // Horizontal gap
+    //
+    // Desktop: 40px
+    // Mobile: 20px
+    // ------------------------------------------
+
+    const gap =
+        window.innerWidth <= 700
+            ? 20
+            : 40;
+
+
+    const rightMost =
+        Math.max(
+            winnersRect.right,
+            losersRect.right
+        );
+
+
+    const left =
+        rightMost -
+        bracketRect.left +
+        gap;
+
+
+    // ------------------------------------------
+    // Center Grand Final between the two
+    // final matches.
+    // ------------------------------------------
+
+    const winnersCenter =
+        winnersRect.top +
+        winnersRect.height / 2;
+
+
+    const losersCenter =
+        losersRect.top +
+        losersRect.height / 2;
+
+
+    const combinedCenter =
+        (
+            winnersCenter +
+            losersCenter
+        ) /
+        2;
+
+
+    const top =
+        combinedCenter -
+        bracketRect.top -
+        updatedGrandFinalRect.height / 2;
+
+
+    grandFinal.style.left =
+        `${left}px`;
+
+
+    grandFinal.style.top =
+        `${Math.max(
+            0,
+            top
+        )}px`;
+
+
+    // ------------------------------------------
+    // Add only the space needed for the
+    // Grand Final.
+    // ------------------------------------------
+
+    const requiredWidth =
+        left +
+        updatedGrandFinalRect.width +
+        40;
+
+
+    if (
+        requiredWidth >
+        bracketContainer.scrollWidth
+    ) {
+
+        bracketContainer.style.paddingRight =
+            `${updatedGrandFinalRect.width + gap + 20}px`;
+
+    }
+    else {
+
+        bracketContainer.style.paddingRight =
+            "";
+
+    }
+
+
+    // ------------------------------------------
+    // Draw final connections after placement.
+    // ------------------------------------------
+
+    requestAnimationFrame(
+        function() {
+
+            drawGrandFinalConnections(
+                winnersCard,
+                losersCard,
+                grandFinal
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// CREATE GRAND FINAL CARD
+// ==========================================
+
+function createGrandFinalCard() {
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "bracket-match sc-grand-final";
+
+
+    card.style.position =
+        "absolute";
+
+
+    card.style.zIndex =
+        "4";
+
+
+    // ------------------------------------------
+    // FIND SHEET FINAL ROW
+    // ------------------------------------------
+
+    const sheetFinal =
+        findGrandFinalSheetMatch();
+
+
+    // ------------------------------------------
+    // FIND CURRENT PARTICIPANTS
+    // ------------------------------------------
+
+    const participants =
+        getGrandFinalParticipants();
+
+
+    const team1 =
+        participants.winnersTeam ||
+        (
+            sheetFinal &&
+            sheetFinal.Team1
+        ) ||
+        "TBD";
+
+
+    const team2 =
+        participants.losersTeam ||
+        (
+            sheetFinal &&
+            sheetFinal.Team2
+        ) ||
+        "TBD";
+
+
+    const score1 =
+        sheetFinal
+            ? sheetFinal.Score1
+            : "";
+
+
+    const score2 =
+        sheetFinal
+            ? sheetFinal.Score2
+            : "";
+
+
+    const status =
+        sheetFinal &&
+        sheetFinal.Status
+            ? sheetFinal.Status
+            : "Upcoming";
+
+
+    const statusLower =
+        status.toLowerCase();
+
+
+    // ------------------------------------------
+    // STATUS
+    // ------------------------------------------
+
+    if (
+        statusLower ===
+        "complete"
+    ) {
+
+        card.classList.add(
+            "match-complete"
+        );
+
+    }
+
+    else if (
+        statusLower ===
+        "live"
+    ) {
+
+        card.classList.add(
+            "match-live"
+        );
+
+    }
+
+    else {
+
+        card.classList.add(
+            "match-upcoming"
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // MATCH HEADER
+    // ------------------------------------------
+
+    const header =
+        document.createElement(
+            "div"
+        );
+
+
+    header.className =
+        "match-info";
+
+
+    const title =
+        document.createElement(
+            "span"
+        );
+
+
+    title.textContent =
+        "GRAND FINAL";
+
+
+    const statusElement =
+        document.createElement(
+            "span"
+        );
+
+
+    statusElement.textContent =
+        status;
+
+
+    header.appendChild(
+        title
+    );
+
+
+    header.appendChild(
+        statusElement
+    );
+
+
+    card.appendChild(
+        header
+    );
+
+
+    // ------------------------------------------
+    // WINNERS CHAMPION
+    // ------------------------------------------
+
+    card.appendChild(
+
+        createTeamElement(
+
+            team1,
+
+            score1,
+
+            (
+                sheetFinal &&
+                sheetFinal.Winner ===
+                team1
+            )
+
+        )
+
+    );
+
+
+    // ------------------------------------------
+    // DIVIDER
+    // ------------------------------------------
+
+    const divider =
+        document.createElement(
+            "div"
+        );
+
+
+    divider.className =
+        "bracket-divider";
+
+
+    card.appendChild(
+        divider
+    );
+
+
+    // ------------------------------------------
+    // LOSERS CHAMPION
+    // ------------------------------------------
+
+    card.appendChild(
+
+        createTeamElement(
+
+            team2,
+
+            score2,
+
+            (
+                sheetFinal &&
+                sheetFinal.Winner ===
+                team2
+            )
+
+        )
+
+    );
+
+
+    return card;
+
+}
+
+
+
+// ==========================================
+// DRAW GRAND FINAL CONNECTIONS
+// ==========================================
+//
+// ONLY this final stage crosses between
+// Winners and Losers.
+//
+// Winners Final ───────┐
+//                      │
+//                      ├── Grand Final
+//                      │
+// Losers Final ────────┘
+// ==========================================
+
+function drawGrandFinalConnections(
+    winnersCard,
+    losersCard,
+    grandFinal
+) {
+
+    const old =
+        bracketContainer.querySelector(
+            ".sc-grand-final-lines"
+        );
+
+
+    if (
+        old
+    ) {
+
+        old.remove();
+
+    }
+
+
+    const bracketRect =
+        bracketContainer.getBoundingClientRect();
+
+
+    const width =
+        Math.max(
+            bracketContainer.scrollWidth,
+            bracketContainer.offsetWidth
+        );
+
+
+    const height =
+        Math.max(
+            bracketContainer.scrollHeight,
+            bracketContainer.offsetHeight
+        );
+
+
+    const svg =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
+
+
+    svg.classList.add(
+        "sc-grand-final-lines"
+    );
+
+
+    svg.setAttribute(
+        "width",
+        width
+    );
+
+
+    svg.setAttribute(
+        "height",
+        height
+    );
+
+
+    svg.setAttribute(
+        "viewBox",
+        `0 0 ${width} ${height}`
+    );
+
+
+    svg.style.position =
+        "absolute";
+
+
+    svg.style.left =
+        "0";
+
+
+    svg.style.top =
+        "0";
+
+
+    svg.style.width =
+        `${width}px`;
+
+
+    svg.style.height =
+        `${height}px`;
+
+
+    svg.style.pointerEvents =
+        "none";
+
+
+    svg.style.overflow =
+        "visible";
+
+
+    svg.style.zIndex =
+        "3";
+
+
+    const winners =
+        getPosition(
+            winnersCard,
+            bracketRect
+        );
+
+
+    const losers =
+        getPosition(
+            losersCard,
+            bracketRect
+        );
+
+
+    const finalPosition =
+        getPosition(
+            grandFinal,
+            bracketRect
+        );
+
+
+    // ------------------------------------------
+    // Shared routing point
+    // ------------------------------------------
+
+    const routeX =
+        finalPosition.left -
+        35;
+
+
+    // ------------------------------------------
+    // Winners Final → route
+    // ------------------------------------------
+
+    appendPath(
+
+        svg,
+
+        `M ${winners.right}
+         ${winners.centerY}
+         H ${routeX}`
+
+    );
+
+
+    // ------------------------------------------
+    // Losers Final → route
+    // ------------------------------------------
+
+    appendPath(
+
+        svg,
+
+        `M ${losers.right}
+         ${losers.centerY}
+         H ${routeX}`
+
+    );
+
+
+    // ------------------------------------------
+    // Shared vertical section
+    // ------------------------------------------
+
+    appendPath(
+
+        svg,
+
+        `M ${routeX}
+         ${winners.centerY}
+         V ${losers.centerY}`
+
+    );
+
+
+    // ------------------------------------------
+    // Shared midpoint → Grand Final
+    // ------------------------------------------
+
+    const mergeY =
+        (
+            winners.centerY +
+            losers.centerY
+        ) /
+        2;
+
+
+    appendPath(
+
+        svg,
+
+        `M ${routeX}
+         ${mergeY}
+         H ${finalPosition.left}`
+
+    );
+
+
+    // ------------------------------------------
+    // Insert behind Grand Final card.
+    // ------------------------------------------
+
+    bracketContainer.insertBefore(
+        svg,
+        grandFinal
+    );
+
+}
+
+
+
+// ==========================================
+// GET POSITION
 // ==========================================
 
 function getPosition(
@@ -2084,6 +3128,10 @@ function appendPath(
     );
 
 
+    path.style.pointerEvents =
+        "none";
+
+
     svg.appendChild(
         path
     );
@@ -2144,6 +3192,7 @@ window.addEventListener(
 );
 
 </script>
+
 
 </body>
 
