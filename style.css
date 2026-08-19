@@ -626,3 +626,56 @@ footer p {
     }
 
 }
+
+/* ==========================================
+   MOBILE — SMALL PHONES
+========================================== */
+
+@media (max-width: 500px) {
+
+    .header-inner {
+        min-height: 65px;
+    }
+
+    .logo img {
+        width: 105px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        height: 360px;
+    }
+
+    .hero-content {
+        width: calc(100% - 30px);
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+        letter-spacing: 3px;
+    }
+
+    .hero-content p:not(.eyebrow) {
+        font-size: 14px;
+    }
+
+    .about-section {
+        padding: 30px 15px;
+    }
+
+    .about-image img {
+        height: 250px;
+    }
+
+    .card-section {
+        padding: 45px 10px;
+    }
+
+}
