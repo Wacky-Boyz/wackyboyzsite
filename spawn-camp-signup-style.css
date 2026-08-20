@@ -159,7 +159,6 @@
 
     font-size: 14px;
 
-    font-weight: bold;
   }
 
 /*=========================
@@ -429,13 +428,12 @@
 
     margin: 15px auto 0;
 
-    color: var(--orange);
+    color: #777;
 
-    font-size: 14px;
+    font-size: 12px;
 
     line-height: 1.5;
 
-    font-weight: bold;
   }
 
 
